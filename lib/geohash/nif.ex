@@ -12,4 +12,5 @@ defmodule Geohash.Nif do
   def decode(_geohash), do: :erlang.nif_error(:nif_not_loaded)
   def bounds(_hash), do: :erlang.nif_error(:nif_not_loaded)
   def neighbors(_hash), do: :erlang.nif_error(:nif_not_loaded)
+  def adjacent(_hash, _direction), do: :erlang.nif_error(:nif_not_loaded)
 end

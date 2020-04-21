@@ -310,13 +310,81 @@ neighbors(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
   return ret;
 }
 
+/************************************************************************
+ *
+ *  Returns the adjacent geohash in ordinal direction ["n","s","e","w"]
+ *
+ ***********************************************************************/
+
+/*
+Geohash.Nif.adjacent("abx1","n")
+"abx4"
+*/
+static ERL_NIF_TERM
+adjacent(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
+{
+  if (argc != 2)
+  {
+    return enif_make_badarg(env);
+  }
+
+  char hash[MAXBUFLEN];
+  (void)memset(&hash, '\0', MAXBUFLEN);
+  if (enif_get_string(env, argv[0], hash, MAXBUFLEN, ERL_NIF_LATIN1) < 1)
+  {
+    return enif_make_badarg(env);
+  }
+  char direction[2];
+  (void)memset(&direction, '\0', 2);
+  if (enif_get_string(env, argv[1], direction, 2, ERL_NIF_LATIN1) < 1)
+  {
+    return enif_make_badarg(env);
+  }
+
+  if (!GEOHASH_verify_hash(hash))
+  {
+    return make_error(env, "invalid hash");
+  }
+
+  GEOHASH_direction dir;
+
+  switch (*direction)
+  {
+  case 'n':
+  case 'N':
+    dir = GEOHASH_NORTH;
+    break;
+  case 's':
+  case 'S':
+    dir = GEOHASH_SOUTH;
+    break;
+  case 'e':
+  case 'E':
+    dir = GEOHASH_EAST;
+    break;
+  case 'w':
+  case 'W':
+    dir = GEOHASH_WEST;
+    break;
+  default:
+    return make_error(env, "invalid direction");
+  }
+
+  char *adjacent;
+  adjacent = GEOHASH_get_adjacent(hash, dir);
+  ERL_NIF_TERM ret = make_binary(env, adjacent);
+  free(adjacent);
+
+  return ret;
+}
+
 static ErlNifFunc nif_funcs[] =
     {
         {"encode", 3, encode},
         {"decode", 1, decode},
         {"bounds", 1, bounds},
         {"neighbors", 1, neighbors},
-        // {"adjacent", 2, adjacent, ERL_NIF_DIRTY_JOB_CPU_BOUND},
+        {"adjacent", 2, adjacent},
 };
 
 ERL_NIF_INIT(Elixir.Geohash.Nif, nif_funcs, &load, NULL, &upgrade, &unload);
