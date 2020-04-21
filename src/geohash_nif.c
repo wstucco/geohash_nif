@@ -112,9 +112,7 @@ encode(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
   char *hash;
   hash = GEOHASH_encode(latitude, longitude, length);
 
-  ERL_NIF_TERM ret;
-  unsigned char *ret_bin = enif_make_new_binary(env, length, &ret);
-  strncpy(ret_bin, hash, length);
+  ERL_NIF_TERM ret = make_binary(env, hash);
   free(hash);
 
   return ret;
