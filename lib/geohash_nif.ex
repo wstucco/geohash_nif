@@ -14,4 +14,12 @@ defmodule Geohash do
   end
 
   defdelegate decode(hash), to: Nif
+
+  def bounds(hash) when is_binary(hash) do
+    hash
+    |> to_charlist()
+    |> Nif.bounds()
+  end
+
+  defdelegate bounds(hash), to: Nif
 end

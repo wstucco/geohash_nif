@@ -168,11 +168,68 @@ decode(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
   return ret;
 }
 
+/************************************************************************
+ *
+ *  Returns the bounds of a geohash as map
+ *  %{max_lat: ..., max_lon: ..., min_lat: ..., min_lon: ...}
+ *
+ ***********************************************************************/
+
+/*
+Geohash.Nif.bounds("s01")
+%{max_lat: 1.40625, max_lon: 2.8125, min_lat: 0.0, min_lon: 1.40625}
+
+*/
+static ERL_NIF_TERM
+bounds(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
+{
+  if (argc != 1)
+  {
+    return enif_make_badarg(env);
+  }
+
+  char hash[MAXBUFLEN];
+  (void)memset(&hash, '\0', MAXBUFLEN);
+
+  if (enif_get_string(env, argv[0], hash, sizeof(hash), ERL_NIF_LATIN1) < 1)
+  {
+    return enif_make_badarg(env);
+  }
+
+  if (!GEOHASH_verify_hash(hash))
+  {
+    return tagged_error(env, "invalid hash");
+  }
+
+  GEOHASH_area *area;
+  area = GEOHASH_decode(hash);
+
+  ERL_NIF_TERM ret;
+  ERL_NIF_TERM keys[4] = {
+      enif_make_atom(env, "max_lat"),
+      enif_make_atom(env, "max_lon"),
+      enif_make_atom(env, "min_lat"),
+      enif_make_atom(env, "min_lon"),
+  };
+  ERL_NIF_TERM values[4] = {
+      enif_make_double(env, area->latitude.max),
+      enif_make_double(env, area->longitude.max),
+      enif_make_double(env, area->latitude.min),
+      enif_make_double(env, area->longitude.min),
+  };
+
+  enif_make_map_from_arrays(env, keys, values, 4, &ret);
+
+  GEOHASH_free_area(area);
+
+  return ret;
+}
+
 static ErlNifFunc nif_funcs[] =
     {
         {"encode", 3, encode},
         {"decode", 1, decode},
-        // {"bounds", 1, bounds, ERL_NIF_DIRTY_JOB_CPU_BOUND},
+        {"bounds", 1, bounds},
         // {"neighbors", 1, neighbors, ERL_NIF_DIRTY_JOB_CPU_BOUND},
         // {"adjacent", 2, adjacent, ERL_NIF_DIRTY_JOB_CPU_BOUND},
 };

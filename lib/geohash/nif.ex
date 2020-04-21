@@ -11,4 +11,6 @@ defmodule Geohash.Nif do
   def encode(_latitude, _longitude, _length), do: :erlang.nif_error(:nif_not_loaded)
 
   def decode(_geohash), do: :erlang.nif_error(:nif_not_loaded)
+
+  def bounds(_hash), do: :erlang.nif_error(:nif_not_loaded)
 end
