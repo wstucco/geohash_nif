@@ -26,6 +26,22 @@ inline double _round(double n, unsigned short l)
   return val / f;
 }
 
+inline ERL_NIF_TERM make_binary(ErlNifEnv *env, const char *value)
+{
+  ErlNifBinary output_binary;
+  const int binary_len = strlen(value);
+  enif_alloc_binary(binary_len, &output_binary);
+  strcpy((char *)output_binary.data, value);
+  return enif_make_binary(env, &output_binary);
+}
+
+inline static ERL_NIF_TERM tagged_error(ErlNifEnv *env, const char *error)
+{
+  return enif_make_tuple2(env,
+                          err_atom,
+                          make_binary(env, error));
+}
+
 static int
 load(ErlNifEnv *env, void **priv, ERL_NIF_TERM load_info)
 {
@@ -128,8 +144,12 @@ decode(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
 
   if (enif_get_string(env, argv[0], hash, sizeof(hash), ERL_NIF_LATIN1) < 1)
   {
-
     return enif_make_badarg(env);
+  }
+
+  if (!GEOHASH_verify_hash(hash))
+  {
+    return tagged_error(env, "invalid hash");
   }
 
   GEOHASH_area *area;
