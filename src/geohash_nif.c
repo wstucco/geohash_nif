@@ -37,7 +37,7 @@ inline ERL_NIF_TERM make_binary(ErlNifEnv *env, const char *value)
   return enif_make_binary(env, &output_binary);
 }
 
-inline static ERL_NIF_TERM tagged_error(ErlNifEnv *env, const char *error)
+inline static ERL_NIF_TERM make_error(ErlNifEnv *env, const char *error)
 {
   return enif_make_tuple2(env,
                           err_atom,
@@ -149,7 +149,7 @@ decode(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
 
   if (!GEOHASH_verify_hash(hash))
   {
-    return tagged_error(env, "invalid hash");
+    return make_error(env, "invalid hash");
   }
 
   GEOHASH_area *area;
@@ -200,7 +200,7 @@ bounds(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
 
   if (!GEOHASH_verify_hash(hash))
   {
-    return tagged_error(env, "invalid hash");
+    return make_error(env, "invalid hash");
   }
 
   GEOHASH_area *area;
@@ -275,7 +275,7 @@ neighbors(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
 
   if (!GEOHASH_verify_hash(hash))
   {
-    return tagged_error(env, "invalid hash");
+    return make_error(env, "invalid hash");
   }
 
   GEOHASH_neighbors *neighbors;
