@@ -30,4 +30,12 @@ defmodule Geohash do
   end
 
   defdelegate neighbors(hash), to: Nif
+
+  def adjacent(hash, direction) when is_binary(hash) or is_binary(direction) do
+    hash = to_charlist(hash)
+    direction = to_charlist(direction)
+    Nif.adjacent(hash, direction)
+  end
+
+  defdelegate adjacent(hash, direction), to: Nif
 end
