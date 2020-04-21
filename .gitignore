@@ -25,3 +25,6 @@ geohash_nif-*.tar
 # Ignore language server cache
 .elixir_ls/
 
+# Ignore compilation artifcats
+priv/*.so
+
