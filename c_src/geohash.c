@@ -257,14 +257,14 @@ GEOHASH_get_adjacent(const char *hash, GEOHASH_direction dir)
 
   border_table = BORDERS_TABLE[idx];
 
-  base = (char *)malloc(sizeof(char) * (len + 1));
+  base = (char *)malloc(sizeof(char) * len);
   if (base == NULL)
     return NULL;
-  memset(base, '\0', sizeof(char) * (len + 1));
 
-  strncpy(base, hash, len - 1);
+  memset(base, '\0', sizeof(char) * len);
+  memcpy(base, hash, len - 1);
 
-  if (strchr(border_table, last) != NULL)
+  if (strchr(border_table, last) != NULL && len > 1)
   {
     refined_base = GEOHASH_get_adjacent(base, dir);
     if (refined_base == NULL)
@@ -272,7 +272,7 @@ GEOHASH_get_adjacent(const char *hash, GEOHASH_direction dir)
       free(base);
       return NULL;
     }
-    strncpy(base, refined_base, strlen(refined_base));
+    memcpy(base, refined_base, strlen(refined_base));
     free(refined_base);
   }
 
@@ -286,7 +286,9 @@ GEOHASH_get_adjacent(const char *hash, GEOHASH_direction dir)
   }
   idx = (int)(ptr - neighbor_table);
   len = strlen(base);
+
   base[len] = BASE32_ENCODE_TABLE[idx];
+
   return base;
 }
 
