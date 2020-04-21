@@ -48,20 +48,20 @@ defmodule GeohashTest do
     assert Geohash.decode('6gkzwgjz') == {-25.38262, -49.26561}
   end
 
-  # test "Geohash.neighbors" do
-  #   assert Geohash.neighbors("6gkzwgjz") == %{
-  #            "n" => "6gkzwgmb",
-  #            "s" => "6gkzwgjy",
-  #            "e" => "6gkzwgnp",
-  #            "w" => "6gkzwgjx",
-  #            "ne" => "6gkzwgq0",
-  #            "se" => "6gkzwgnn",
-  #            "nw" => "6gkzwgm8",
-  #            "sw" => "6gkzwgjw"
-  #          }
+  test "Geohash.neighbors" do
+    assert Geohash.neighbors("6gkzwgjz") == %{
+             "n" => "6gkzwgmb",
+             "s" => "6gkzwgjy",
+             "e" => "6gkzwgnp",
+             "w" => "6gkzwgjx",
+             "ne" => "6gkzwgq0",
+             "se" => "6gkzwgnn",
+             "nw" => "6gkzwgm8",
+             "sw" => "6gkzwgjw"
+           }
 
-  #   assert Geohash.adjacent("ww8p1r4t8", "e") == "ww8p1r4t9"
-  # end
+    # assert Geohash.adjacent("ww8p1r4t8", "e") == "ww8p1r4t9"
+  end
 
   @geobase32 '0123456789bcdefghjkmnpqrstuvwxyz'
 
@@ -96,8 +96,6 @@ defmodule GeohashTest do
   #   end
   # end
 
-  # TODO: Check if error margins are correct, if so, fix error
-  #       in rounding code
   # Error margins taken from Wikipedia's Geohash page
   @error_margin %{
     1 => {23, 23},
@@ -137,12 +135,12 @@ defmodule GeohashTest do
         IO.inspect({"coords", {lat, lng}})
         IO.inspect({"precision", precision, lat_precision, lng_precision})
         IO.inspect({"new coords", {new_lat, new_lng}})
-        IO.inspect({"error margin", {num(lat_error), num(lng_error)}})
-        IO.inspect({"thresholds", {num(lat_threshold), num(lng_threshold)}})
+        IO.inspect({"error margin", {lat_error, lng_error}})
+        IO.inspect({"thresholds", {lat_threshold, lng_threshold}})
 
-        IO.inspect({"real error", num(abs(new_lat - lat)), num(abs(new_lng - lng))})
+        IO.inspect({"real error", abs(new_lat - lat), abs(new_lng - lng)})
 
-        IO.inspect({"difference", {num(new_lat_error), num(new_lng_error)}})
+        IO.inspect({"difference", {new_lat_error, new_lng_error}})
 
         IO.inspect({geohash, new_geohash})
       end
@@ -178,6 +176,4 @@ defmodule GeohashTest do
       assert bounds.min_lon <= lon && lon <= bounds.max_lon
     end
   end
-
-  def num(n), do: :erlang.float_to_binary(n / 1.0, [:compact, decimals: 10])
 end

@@ -8,6 +8,8 @@ ERL_NIF_TERM ok_atom;
 ERL_NIF_TERM err_atom;
 
 #define MAXBUFLEN 1024
+#define BOUNDARIES 4
+#define NEIGHBORS 8
 
 inline double _round(double n, unsigned short l)
 {
@@ -205,22 +207,105 @@ bounds(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
   area = GEOHASH_decode(hash);
 
   ERL_NIF_TERM ret;
-  ERL_NIF_TERM keys[4] = {
+  ERL_NIF_TERM keys[BOUNDARIES] = {
       enif_make_atom(env, "max_lat"),
       enif_make_atom(env, "max_lon"),
       enif_make_atom(env, "min_lat"),
       enif_make_atom(env, "min_lon"),
   };
-  ERL_NIF_TERM values[4] = {
+  ERL_NIF_TERM values[BOUNDARIES] = {
       enif_make_double(env, area->latitude.max),
       enif_make_double(env, area->longitude.max),
       enif_make_double(env, area->latitude.min),
       enif_make_double(env, area->longitude.min),
   };
 
-  enif_make_map_from_arrays(env, keys, values, 4, &ret);
+  enif_make_map_from_arrays(env, keys, values, BOUNDARIES, &ret);
 
   GEOHASH_free_area(area);
+
+  return ret;
+}
+
+/************************************************************************
+ *
+ *  Returns the neighbors of a geohash as map
+ *
+ * %{
+ *    "n" => ...,
+ *    "s" => ...,
+ *    "e" => ...,
+ *    "w" => ...,
+ *    "ne" => ...,
+ *    "se" => ...,
+ *    "nw" => ...,
+ *    "sw" => ...
+ * }
+ *
+ ***********************************************************************/
+
+/*
+Geohash.Nif.neighbors("6gkzwgjz")
+%{
+    "n" => "6gkzwgmb",
+    "s" => "6gkzwgjy",
+    "e" => "6gkzwgnp",
+    "w" => "6gkzwgjx",
+    "ne" => "6gkzwgq0",
+    "se" => "6gkzwgnn",
+    "nw" => "6gkzwgm8",
+    "sw" => "6gkzwgjw"
+}
+*/
+static ERL_NIF_TERM
+neighbors(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
+{
+  if (argc != 1)
+  {
+    return enif_make_badarg(env);
+  }
+
+  char hash[MAXBUFLEN];
+  (void)memset(&hash, '\0', MAXBUFLEN);
+
+  if (enif_get_string(env, argv[0], hash, sizeof(hash), ERL_NIF_LATIN1) < 1)
+  {
+    return enif_make_badarg(env);
+  }
+
+  if (!GEOHASH_verify_hash(hash))
+  {
+    return tagged_error(env, "invalid hash");
+  }
+
+  GEOHASH_neighbors *neighbors;
+  neighbors = GEOHASH_get_neighbors(hash);
+
+  ERL_NIF_TERM ret;
+  ERL_NIF_TERM keys[NEIGHBORS] = {
+      make_binary(env, "n"),
+      make_binary(env, "s"),
+      make_binary(env, "e"),
+      make_binary(env, "w"),
+      make_binary(env, "ne"),
+      make_binary(env, "se"),
+      make_binary(env, "nw"),
+      make_binary(env, "sw"),
+  };
+  ERL_NIF_TERM values[NEIGHBORS] = {
+      make_binary(env, neighbors->north),
+      make_binary(env, neighbors->south),
+      make_binary(env, neighbors->east),
+      make_binary(env, neighbors->west),
+      make_binary(env, neighbors->north_east),
+      make_binary(env, neighbors->south_east),
+      make_binary(env, neighbors->north_west),
+      make_binary(env, neighbors->south_west),
+  };
+
+  enif_make_map_from_arrays(env, keys, values, NEIGHBORS, &ret);
+
+  GEOHASH_free_neighbors(neighbors);
 
   return ret;
 }
@@ -230,7 +315,7 @@ static ErlNifFunc nif_funcs[] =
         {"encode", 3, encode},
         {"decode", 1, decode},
         {"bounds", 1, bounds},
-        // {"neighbors", 1, neighbors, ERL_NIF_DIRTY_JOB_CPU_BOUND},
+        {"neighbors", 1, neighbors},
         // {"adjacent", 2, adjacent, ERL_NIF_DIRTY_JOB_CPU_BOUND},
 };
 

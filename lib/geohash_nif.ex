@@ -22,4 +22,12 @@ defmodule Geohash do
   end
 
   defdelegate bounds(hash), to: Nif
+
+  def neighbors(hash) when is_binary(hash) do
+    hash
+    |> to_charlist()
+    |> Nif.neighbors()
+  end
+
+  defdelegate neighbors(hash), to: Nif
 end
