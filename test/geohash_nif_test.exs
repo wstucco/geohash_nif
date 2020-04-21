@@ -60,7 +60,7 @@ defmodule GeohashTest do
              "sw" => "6gkzwgjw"
            }
 
-    # assert Geohash.adjacent("ww8p1r4t8", "e") == "ww8p1r4t9"
+    assert Geohash.adjacent("ww8p1r4t8", "e") == "ww8p1r4t9"
   end
 
   @geobase32 '0123456789bcdefghjkmnpqrstuvwxyz'
@@ -69,7 +69,7 @@ defmodule GeohashTest do
     do: StreamData.list_of(StreamData.member_of(@geobase32), min_length: 1, max_length: 12)
 
   property "decode is reversible" do
-    check all(geohash <- geocodes_domain(), max_runs: 10000) do
+    check all(geohash <- geocodes_domain(), max_runs: 5_000) do
       geohash = to_string(geohash)
       precision = String.length(geohash)
       {lat, lng} = Geohash.decode(geohash)
@@ -78,23 +78,23 @@ defmodule GeohashTest do
     end
   end
 
-  # @tag iterations: 10000
-  # property "neighbors is reversible" do
-  #   check all(geohash <- geocodes_domain(), max_runs: 10000) do
-  #     geohash = to_string(geohash)
+  @tag iterations: 10_000
+  property "neighbors is reversible" do
+    check all(geohash <- geocodes_domain(), max_runs: 5_000) do
+      geohash = to_string(geohash)
 
-  #     for {direction, opposite} <- [{"n", "s"}, {"e", "w"}, {"s", "n"}, {"w", "e"}] do
-  #       adj = Geohash.adjacent(geohash, direction)
-  #       original = Geohash.adjacent(adj, opposite)
+      for {direction, opposite} <- [{"n", "s"}, {"e", "w"}, {"s", "n"}, {"w", "e"}] do
+        adj = Geohash.adjacent(geohash, direction)
+        original = Geohash.adjacent(adj, opposite)
 
-  #       assert(
-  #         geohash === original,
-  #         "Inverse operation didn't work \"#{geohash} -> #{adj} -> #{original}\""
-  #       )
-  #     end
-  #     |> Enum.all?()
-  #   end
-  # end
+        assert(
+          geohash === original,
+          "Inverse operation didn't work \"#{geohash} -> #{adj} -> #{original}\""
+        )
+      end
+      |> Enum.all?()
+    end
+  end
 
   # Error margins taken from Wikipedia's Geohash page
   @error_margin %{
