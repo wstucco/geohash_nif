@@ -3,7 +3,7 @@ defmodule Geohash.Nif do
   @on_load :init
 
   def init do
-    :erlang.load_nif(:code.priv_dir(:geohash_nif) ++ '/geohash', 0) |> IO.inspect()
+    :erlang.load_nif(:code.priv_dir(:geohash_nif) ++ '/geohash', 0)
   end
 
   @doc false
