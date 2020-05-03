@@ -34,8 +34,8 @@ defmodule GeohashNif.MixProject do
       maintainers: ["Massimo Ronca"],
       licenses: ["MIT"],
       links: %{
-        "GitHub" => "https://github.com/wstucco/geohash_nif",
-        "Issues" => "https://github.com/wstucco/geohash_nif/issues",
+        "GitHub" => "https://gitlab.com/wstucco/geohash_nif",
+        "Issues" => "https://gitlab.com/wstucco/geohash_nif/issues",
         "Docs" => "http://hexdocs.pm/geohash_nif/#{@version}/"
       },
       files: [
