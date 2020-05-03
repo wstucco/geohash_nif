@@ -424,7 +424,7 @@ static ErlNifFunc nif_funcs[] =
     {
         {"encode", 3, encode},
         {"decode", 1, decode},
-        {"decode_to_bits", 2, decode_to_bits},
+        {"decode_to_bits", 1, decode_to_bits},
         {"bounds", 1, bounds},
         {"neighbors", 1, neighbors},
         {"adjacent", 2, adjacent},
