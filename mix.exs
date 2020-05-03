@@ -44,6 +44,7 @@ defmodule GeohashNif.MixProject do
         "c_src/COPYING",
         "lib",
         "LICENSE",
+        "LICENSE.geohash",
         "Makefile",
         "mix.exs",
         "README.md",
