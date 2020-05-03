@@ -18,10 +18,15 @@ defmodule Geohash do
   def decode_to_bits(hash) when is_binary(hash) do
     hash
     |> to_charlist()
-    |> Nif.decode_to_bits()
+    |> __MODULE__.decode_to_bits()
   end
 
-  defdelegate decode_to_bits(hash), to: Nif
+  def decode_to_bits(hash) do
+    bits = Nif.decode_to_bits(hash)
+
+    bit_size = round(:math.log2(bits) + 1)
+    <<bits::size(bit_size)>>
+  end
 
   def bounds(hash) when is_binary(hash) do
     hash
