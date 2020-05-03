@@ -10,6 +10,7 @@ defmodule GeohashNif.MixProject do
       elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:nif, :elixir, :app],
+      preferred_cli_env: [bench: :test],
       deps: deps(),
       package: package(),
       description: description(),
@@ -20,7 +21,7 @@ defmodule GeohashNif.MixProject do
 
   def application, do: []
 
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(:test), do: ["lib", "bench"]
   defp elixirc_paths(_), do: ["lib"]
 
   defp description do
@@ -56,7 +57,9 @@ defmodule GeohashNif.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:benchee, "~> 1.0", only: [:dev, :test]},
+      {:benchee, "~> 1.0", only: :test},
+      {:benchee_html, "~> 1.0", only: :test},
+      {:geohash, "~> 1.2", only: :test},
       {:stream_data, "~> 0.1", only: [:dev, :test]}
     ]
   end
@@ -80,13 +83,14 @@ defmodule Mix.Tasks.Compile.Nif do
         end
 
     {result, error_code} = System.cmd(make_cmd, [], stderr_to_stdout: true)
-    IO.binwrite(result)
+    # IO.binwrite(result)
 
     if error_code != 0 do
       raise Mix.Error,
         message: """
           Could not run `#{make_cmd}`.
           Please check if `make` and either `clang` or `gcc` are installed
+          Error: #{result}
         """
     end
 
