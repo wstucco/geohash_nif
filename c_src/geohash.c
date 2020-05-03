@@ -1,3 +1,9 @@
+/* Copied from https://github.com/lyokato/libgeohash
+ * with the following modifications:
+ *   - fix SegFault in GEOHASH_get_adjacent when hash is 1 character long
+ *     (https://github.com/lyokato/libgeohash/pull/4)
+ */
+
 /*
 The MIT License
 
