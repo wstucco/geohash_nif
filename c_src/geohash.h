@@ -66,7 +66,7 @@ extern "C"
   } GEOHASH_neighbors;
 
   bool GEOHASH_verify_hash(const char *hash);
-  uint64_t GEOHASH_decode_to_bits(const char *hash, unsigned int bit_size);
+  uint64_t GEOHASH_decode_to_bits(const char *hash);
   char *GEOHASH_encode(double latitude, double longitude, unsigned int hash_length);
   GEOHASH_area *GEOHASH_decode(const char *hash);
   GEOHASH_neighbors *GEOHASH_get_neighbors(const char *hash);

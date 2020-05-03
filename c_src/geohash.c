@@ -107,18 +107,16 @@ bool GEOHASH_verify_hash(const char *hash)
 }
 
 uint64_t
-GEOHASH_decode_to_bits(const char *hash, unsigned int bit_size)
+GEOHASH_decode_to_bits(const char *hash)
 {
   const char *p;
   unsigned char c;
   uint64_t bits;
-  uint64_t mask;
   unsigned int len;
 
   p = hash;
   len = strlen(hash) - 1;
   bits = 0;
-  mask = ((uint64_t)1 << bit_size) - 1;
 
   while (*p != '\0')
   {
@@ -140,7 +138,7 @@ GEOHASH_decode_to_bits(const char *hash, unsigned int bit_size)
     bits = bits | ((uint64_t)ch << (5 * len--));
   }
 
-  return bits & mask;
+  return bits;
 }
 
 GEOHASH_area *

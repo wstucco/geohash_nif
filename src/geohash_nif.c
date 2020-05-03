@@ -389,7 +389,7 @@ Geohash.Nif.decode_to_bits('ezs42', 25)
 static ERL_NIF_TERM
 decode_to_bits(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
 {
-  if (argc != 2)
+  if (argc != 1)
   {
     return enif_make_badarg(env);
   }
@@ -402,14 +402,8 @@ decode_to_bits(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
     return enif_make_badarg(env);
   }
 
-  unsigned int length;
-  if (!enif_get_uint(env, argv[1], &length))
-  {
-    return enif_make_badarg(env);
-  }
-
   uint64_t bits;
-  bits = GEOHASH_decode_to_bits(hash, length);
+  bits = GEOHASH_decode_to_bits(hash);
   if (bits == 0)
   {
     return make_error(env, "invalid hash");
