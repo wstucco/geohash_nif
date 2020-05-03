@@ -8,6 +8,7 @@ defmodule GeohashNif.MixProject do
       app: :geohash_nif,
       version: "0.1.0",
       elixir: "~> 1.9",
+      elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:nif, :elixir, :app],
       deps: deps(),
       package: package(),
@@ -19,10 +20,12 @@ defmodule GeohashNif.MixProject do
 
   def application, do: []
 
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
+
   defp description do
     """
-    Elixir NIF for cmark (C), a parser library following the CommonMark spec,
-    a compatible implementation of Markdown.
+    Elixir NIF for encoding/decoding and manipulating geohashes.
     """
   end
 
