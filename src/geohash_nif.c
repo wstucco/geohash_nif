@@ -148,13 +148,12 @@ decode(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
     return enif_make_badarg(env);
   }
 
-  if (!GEOHASH_verify_hash(hash))
+  GEOHASH_area *area;
+  area = GEOHASH_decode(hash);
+  if (area == NULL)
   {
     return make_error(env, "invalid hash");
   }
-
-  GEOHASH_area *area;
-  area = GEOHASH_decode(hash);
 
   unsigned short lat_decimals = floor(2 - log10(area->latitude.max - area->latitude.min));
   double latitude = _round((area->latitude.min + area->latitude.max) / 2, lat_decimals);
@@ -199,13 +198,12 @@ bounds(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
     return enif_make_badarg(env);
   }
 
-  if (!GEOHASH_verify_hash(hash))
+  GEOHASH_area *area;
+  area = GEOHASH_decode(hash);
+  if (area == NULL)
   {
     return make_error(env, "invalid hash");
   }
-
-  GEOHASH_area *area;
-  area = GEOHASH_decode(hash);
 
   ERL_NIF_TERM ret;
   ERL_NIF_TERM keys[BOUNDARIES] = {
