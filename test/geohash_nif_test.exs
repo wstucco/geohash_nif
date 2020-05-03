@@ -37,9 +37,9 @@ defmodule GeohashTest do
     assert Geohash.encode(51.501568, -0.141257, 12) == "gcpuuz94kkp5"
   end
 
-  # test "Geohash.decode_to_bits" do
-  #   assert Geohash.decode_to_bits("ezs42") == <<0b0110111111110000010000010::25>>
-  # end
+  test "Geohash.decode_to_bits" do
+    assert Geohash.decode_to_bits("ezs42") == <<0b0110111111110000010000010::25>>
+  end
 
   test "Geohash.decode" do
     assert Geohash.decode("ww8p1r4t8") == {37.832386, 112.558386}
