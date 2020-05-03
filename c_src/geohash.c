@@ -27,6 +27,7 @@ THE SOFTWARE.
 #include <stddef.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include <assert.h>
 
 #include "geohash.h"
@@ -103,6 +104,43 @@ bool GEOHASH_verify_hash(const char *hash)
       return false;
   }
   return true;
+}
+
+uint64_t
+GEOHASH_decode_to_bits(const char *hash, unsigned int bit_size)
+{
+  const char *p;
+  unsigned char c;
+  uint64_t bits;
+  uint64_t mask;
+  unsigned int len;
+
+  p = hash;
+  len = strlen(hash) - 1;
+  bits = 0;
+  mask = ((uint64_t)1 << bit_size) - 1;
+
+  while (*p != '\0')
+  {
+    c = toupper(*p++);
+    if (c < 0x30)
+    {
+      return 0;
+    }
+    c -= 0x30;
+    if (c > 43)
+    {
+      return 0;
+    }
+    char ch = BASE32_DECODE_TABLE[c];
+    if (ch == -1)
+    {
+      return 0;
+    }
+    bits = bits | ((uint64_t)ch << (5 * len--));
+  }
+
+  return bits & mask;
 }
 
 GEOHASH_area *

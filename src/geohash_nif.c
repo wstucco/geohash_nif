@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdint.h>
 #include <math.h>
 
 #include "erl_nif.h"
@@ -378,10 +379,60 @@ adjacent(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
   return ret;
 }
 
+/************************************************************************
+ *
+ *  Decodes a geohash to a bitstring of length `length`
+ *
+ ***********************************************************************/
+/*
+Geohash.Nif.decode_to_bits('ezs42', 25)
+<<0b0110111111110000010000010::25>>
+*/
+static ERL_NIF_TERM
+decode_to_bits(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
+{
+  if (argc != 2)
+  {
+    return enif_make_badarg(env);
+  }
+
+  char hash[MAXBUFLEN];
+  (void)memset(&hash, '\0', MAXBUFLEN);
+
+  if (enif_get_string(env, argv[0], hash, sizeof(hash), ERL_NIF_LATIN1) < 1)
+  {
+    return enif_make_badarg(env);
+  }
+
+  unsigned int length;
+  if (!enif_get_uint(env, argv[1], &length))
+  {
+    return enif_make_badarg(env);
+  }
+
+  uint64_t bits;
+  bits = GEOHASH_decode_to_bits(hash, length);
+  if (bits == 0)
+  {
+    return make_error(env, "invalid hash");
+  }
+  else
+  {
+    return enif_make_uint64(env, bits);
+  }
+}
+
+/************************************************************************
+ *
+ * ErlNifFunc struct declaration
+ *
+ ***********************************************************************/
+
 static ErlNifFunc nif_funcs[] =
     {
         {"encode", 3, encode},
         {"decode", 1, decode},
+        {"decode_to_bits", 2, decode_to_bits},
         {"bounds", 1, bounds},
         {"neighbors", 1, neighbors},
         {"adjacent", 2, adjacent},
