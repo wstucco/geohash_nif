@@ -1,11 +1,11 @@
 defmodule GeohashBench.Encode do
-  def run do
-    Benchee.run(
-      %{
-        "encode NIF" => fn length ->
+  def bench_spec do
+    [
+      benchmarks: %{
+        "encode with NIF" => fn length ->
           Geohash.Nif.encode(51.501568, -0.141257, length)
         end,
-        "encode Elixir" => fn length ->
+        "encode with Elixir" => fn length ->
           Geohash.encode(51.501568, -0.141257, length)
         end
       },
@@ -22,14 +22,7 @@ defmodule GeohashBench.Encode do
         "length: 10" => 10,
         "length: 11" => 11,
         "length: 12" => 12
-      },
-      formatters: [
-        {Benchee.Formatters.Console, extended_statistics: true}
-        # {Benchee.Formatters.HTML, file: "results/encode.html", auto_open: false}
-      ],
-      time: 3,
-      warmup: 1,
-      memory_time: 2
-    )
+      }
+    ]
   end
 end
