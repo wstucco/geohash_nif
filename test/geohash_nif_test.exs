@@ -59,7 +59,9 @@ defmodule GeohashTest do
              "nw" => "6gkzwgm8",
              "sw" => "6gkzwgjw"
            }
+  end
 
+  test "Geohash.adjacent" do
     assert Geohash.adjacent("ww8p1r4t8", "e") == "ww8p1r4t9"
   end
 
