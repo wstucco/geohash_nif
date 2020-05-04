@@ -1,22 +1,23 @@
 defmodule Mix.Tasks.Bench do
   use Mix.Task
 
+  @bench_funcs ["encode", "decode", "bounds", "adjacent", "neighbors", "decode_to_bits"]
   @preferred_cli_env :test
   @shortdoc "Bench Geohash NIF against Gehohash native Elixir implementation"
   @moduledoc """
   Bench Geohash NIF against Gehohash native Elixir implementation
 
-  If run without parameters runs all the benchmarks.
+  ## Usage
 
-  ## Command line options
-    * `all` - if present, enables **all** the benchmarks
-    * `encode` - if present, enables the `encode` benchmark
-    * `decode` - if present, enables the `decode` benchmark
-    * `adjacent` - if present, enables the `adjacent` benchmark
-    * `neighbours` - if present, enables the `neighbours` benchmark
-    * `bounds` - if present, enables the `bounds` benchmark
+  `mix bench <bench_name> [<bench_name> ...]`
 
-  Options can be combined to run multiple benchmarks.
+  If `<bench_name>` is omitted or one of them is **all** runs all the benchmarks.
+
+  `<bench_name>` can be a single value or a list of values separated by spaces.
+  Invalid values are simply ignored.
+
+  Valid `<bench_name>` values are
+  * **#{Enum.join(@bench_funcs, "**\n* **")}**
 
   ## Examples
 
@@ -26,8 +27,6 @@ defmodule Mix.Tasks.Bench do
   * `$ mix bench encode decode` - runs the `encode` and `decode` benchmarks
   * `$ mix bench xxx all yyy` - runs all benchmarks
   """
-
-  @bench_funcs ["encode", "decode", "bounds", "adjacent", "neighbours"]
 
   @impl true
   def run(args) do
