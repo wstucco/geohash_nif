@@ -60,7 +60,7 @@ defmodule GeohashNif.MixProject do
       {:benchee, "~> 1.0", only: :test},
       {:benchee_html, "~> 1.0", only: :test},
       {:geohash, "~> 1.2", only: :test},
-      {:stream_data, "~> 0.1", only: [:dev, :test]}
+      {:stream_data, "~> 0.1", only: :test}
     ]
   end
 end
