@@ -1,13 +1,13 @@
-defmodule GeohashBench.Bounds do
+defmodule GeohashBench.Neighbors do
   def bench_spec do
     [
       benchmarks: %{
-        "bounds with NIF" => fn input ->
-          Geohash.Nif.bounds(to_charlist(input))
-        end,
-        "bounds with Elixir" => fn input ->
-          Geohash.bounds(input)
+        "neighbors with NIF" => fn input ->
+          Geohash.Nif.neighbors(to_charlist(input)) |> IO.inspect()
         end
+        # "neighbors with Elixir" => fn input ->
+        #   Geohash.neighbors(input)
+        # end
       },
       inputs: %{
         "length: 01" => "g",

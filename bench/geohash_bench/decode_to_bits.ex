@@ -1,12 +1,12 @@
-defmodule GeohashBench.Bounds do
+defmodule GeohashBench.DecodeToBits do
   def bench_spec do
     [
       benchmarks: %{
-        "bounds with NIF" => fn input ->
-          Geohash.Nif.bounds(to_charlist(input))
+        "decode_to_bits with NIF" => fn input ->
+          Geohash.Nif.decode_to_bits(to_charlist(input))
         end,
-        "bounds with Elixir" => fn input ->
-          Geohash.bounds(input)
+        "decode_to_bits with Elixir" => fn input ->
+          Geohash.decode_to_bits(input)
         end
       },
       inputs: %{
