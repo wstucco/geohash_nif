@@ -2,7 +2,7 @@ defmodule GeohashBench do
   def run(what) do
     what
     |> Enum.each(fn bench ->
-      module = Module.concat(GeohashBench, String.capitalize(bench))
+      module = Module.concat(GeohashBench, Macro.camelize(bench))
 
       case apply(module, :bench_spec, []) do
         [] ->
