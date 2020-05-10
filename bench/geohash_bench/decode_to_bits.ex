@@ -3,7 +3,7 @@ defmodule GeohashBench.DecodeToBits do
     [
       benchmarks: %{
         "decode_to_bits with NIF" => fn input ->
-          Geohash.Nif.decode_to_bits(to_charlist(input))
+          Geohash.Nif.decode_to_bits(input)
         end,
         "decode_to_bits with Elixir" => fn input ->
           Geohash.decode_to_bits(input)

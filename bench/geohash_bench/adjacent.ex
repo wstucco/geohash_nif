@@ -3,7 +3,7 @@ defmodule GeohashBench.Adjacent do
     [
       benchmarks: %{
         "adjacent with NIF" => fn input ->
-          Geohash.Nif.adjacent(to_charlist(input), 'e')
+          Geohash.Nif.adjacent(input, "e")
         end,
         "adjacent with Elixir" => fn input ->
           Geohash.adjacent(input, "e")

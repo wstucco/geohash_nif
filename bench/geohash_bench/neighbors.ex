@@ -3,11 +3,11 @@ defmodule GeohashBench.Neighbors do
     [
       benchmarks: %{
         "neighbors with NIF" => fn input ->
-          Geohash.Nif.neighbors(to_charlist(input)) |> IO.inspect()
+          Geohash.Nif.neighbors(input) 
+        end,
+        "neighbors with Elixir" => fn input ->
+          Geohash.neighbors(input)
         end
-        # "neighbors with Elixir" => fn input ->
-        #   Geohash.neighbors(input)
-        # end
       },
       inputs: %{
         "length: 01" => "g",

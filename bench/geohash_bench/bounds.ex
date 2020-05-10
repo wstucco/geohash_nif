@@ -3,7 +3,7 @@ defmodule GeohashBench.Bounds do
     [
       benchmarks: %{
         "bounds with NIF" => fn input ->
-          Geohash.Nif.bounds(to_charlist(input))
+          Geohash.Nif.bounds(input)
         end,
         "bounds with Elixir" => fn input ->
           Geohash.bounds(input)
