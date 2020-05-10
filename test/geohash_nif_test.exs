@@ -2,25 +2,25 @@ defmodule GeohashTest do
   use ExUnit.Case
   use ExUnitProperties
 
-  test "Geohash.encode" do
-    assert Geohash.encode(57.64911, 10.40744) == "u4pruydqqvj"
-    assert Geohash.encode(50.958087, 6.9204459) == "u1hcvkxk65f"
-    assert Geohash.encode(39.51, -76.24, 10) == "dr1bc0edrj"
-    assert Geohash.encode(42.6, -5.6, 5) == "ezs42"
-    assert Geohash.encode(0, 0) == "s0000000000"
-    assert Geohash.encode(0, 0, 2) == "s0"
-    assert Geohash.encode(57.648, 10.410, 6) == "u4pruy"
-    assert Geohash.encode(-25.38262, -49.26561, 8) == "6gkzwgjz"
-  end
+ test "Geohash.encode" do
+   assert Geohash.encode(57.64911, 10.40744) == "u4pruydqqvj"
+   assert Geohash.encode(50.958087, 6.9204459) == "u1hcvkxk65f"
+   assert Geohash.encode(39.51, -76.24, 10) == "dr1bc0edrj"
+   assert Geohash.encode(42.6, -5.6, 5) == "ezs42"
+   assert Geohash.encode(0, 0) == "s0000000000"
+   assert Geohash.encode(0, 0, 2) == "s0"
+   assert Geohash.encode(57.648, 10.410, 6) == "u4pruy"
+   assert Geohash.encode(-25.38262, -49.26561, 8) == "6gkzwgjz"
+ end
 
-  test "Geohash.bounds" do
-    assert Geohash.bounds("u4pruydqqv") == %{
-             min_lon: 10.407432317733765,
-             min_lat: 57.649109959602356,
-             max_lon: 10.407443046569824,
-             max_lat: 57.649115324020386
-           }
-  end
+ test "Geohash.bounds" do
+   assert Geohash.bounds("u4pruydqqv") == %{
+            min_lon: 10.407432317733765,
+            min_lat: 57.649109959602356,
+            max_lon: 10.407443046569824,
+            max_lat: 57.649115324020386
+          }
+ end
 
   test "Geohash.encode matches elasticsearch geohash example" do
     assert Geohash.encode(51.501568, -0.141257, 1) == "g"
@@ -45,7 +45,7 @@ defmodule GeohashTest do
     assert Geohash.decode("ww8p1r4t8") == {37.832386, 112.558386}
     assert Geohash.decode("ezs42") == {42.605, -5.603}
     assert Geohash.decode("u4pruy") == {57.648, 10.410}
-    assert Geohash.decode('6gkzwgjz') == {-25.38262, -49.26561}
+    assert Geohash.decode("6gkzwgjz") == {-25.38262, -49.26561}
   end
 
   test "Geohash.neighbors" do
@@ -131,7 +131,7 @@ defmodule GeohashTest do
       {lat_threshold, _} = Float.parse("1e-#{lat_precision}")
       {lng_threshold, _} = Float.parse("1e-#{lng_precision}")
 
-      ok? = new_lat_error <= lat_threshold and new_lng_error <= lng_threshold
+       ok? = new_lat_error <= lat_threshold and new_lng_error <= lng_threshold
 
       unless ok? do
         IO.inspect({"coords", {lat, lng}})
@@ -142,13 +142,13 @@ defmodule GeohashTest do
 
         IO.inspect({"real error", abs(new_lat - lat), abs(new_lng - lng)})
 
-        IO.inspect({"difference", {new_lat_error, new_lng_error}})
+       IO.inspect({"difference", {new_lat_error, new_lng_error}})
 
-        IO.inspect({geohash, new_geohash})
-      end
+       IO.inspect({geohash, new_geohash})
+     end
 
-      assert ok?
-    end
+     assert ok?
+   end
   end
 
   property "encode -> decode -> encode is the same geohash" do

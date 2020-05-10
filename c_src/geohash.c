@@ -69,40 +69,45 @@ static const char BORDERS_TABLE[8][9] = {
     "0145hjnp"  /* SOUTH ODD */
 };
 
-bool GEOHASH_verify_hash(const char *hash)
+bool GEOHASH_verify_hash(const char *hash, size_t len)
 {
   const char *p;
   unsigned char c;
   p = hash;
-  while (*p != '\0')
+  while (len-- > 0)
   {
     c = toupper(*p++);
     if (c < 0x30)
+    {
       return false;
+    }
     c -= 0x30;
     if (c > 43)
+    {
       return false;
+    }
     if (BASE32_DECODE_TABLE[c] == -1)
+    {
       return false;
+    }
   }
   return true;
 }
 
 uint64_t
-GEOHASH_decode_to_bits(const char *hash)
+GEOHASH_decode_to_bits(const char *hash, size_t len)
 {
   const char *p;
   unsigned char c;
   uint64_t bits;
-  unsigned int len;
 
   p = hash;
-  len = strlen(hash) - 1;
   bits = 0;
 
-  while (*p != '\0')
+  while (len-- > 0)
   {
     c = toupper(*p++);
+
     if (c < 0x30)
     {
       return 0;
@@ -117,14 +122,14 @@ GEOHASH_decode_to_bits(const char *hash)
     {
       return 0;
     }
-    bits = bits | ((uint64_t)ch << (5 * len--));
+    bits = bits | ((uint64_t)ch << (5 * len));
   }
 
   return bits;
 }
 
 GEOHASH_area *
-GEOHASH_decode(const char *hash)
+GEOHASH_decode(const char *hash, size_t len)
 {
   const char *p;
   unsigned char c;
@@ -146,7 +151,7 @@ GEOHASH_decode(const char *hash)
 
   p = hash;
 
-  while (*p != '\0')
+  while (len-- > 0)
   {
 
     c = toupper(*p++);
@@ -239,7 +244,7 @@ void GEOHASH_free_area(GEOHASH_area *area)
 }
 
 GEOHASH_neighbors *
-GEOHASH_get_neighbors(const char *hash)
+GEOHASH_get_neighbors(const char *hash, size_t len)
 {
   GEOHASH_neighbors *neighbors;
 
@@ -247,44 +252,44 @@ GEOHASH_get_neighbors(const char *hash)
   if (neighbors == NULL)
     return NULL;
 
-  neighbors->north = GEOHASH_get_adjacent(hash, GEOHASH_NORTH);
-  neighbors->east = GEOHASH_get_adjacent(hash, GEOHASH_EAST);
-  neighbors->west = GEOHASH_get_adjacent(hash, GEOHASH_WEST);
-  neighbors->south = GEOHASH_get_adjacent(hash, GEOHASH_SOUTH);
+  neighbors->north = GEOHASH_get_adjacent(hash, len, GEOHASH_NORTH);
+  neighbors->east = GEOHASH_get_adjacent(hash, len, GEOHASH_EAST);
+  neighbors->west = GEOHASH_get_adjacent(hash, len, GEOHASH_WEST);
+  neighbors->south = GEOHASH_get_adjacent(hash, len, GEOHASH_SOUTH);
 
-  neighbors->north_east = GEOHASH_get_adjacent(neighbors->north, GEOHASH_EAST);
-  neighbors->north_west = GEOHASH_get_adjacent(neighbors->north, GEOHASH_WEST);
-  neighbors->south_east = GEOHASH_get_adjacent(neighbors->south, GEOHASH_EAST);
-  neighbors->south_west = GEOHASH_get_adjacent(neighbors->south, GEOHASH_WEST);
+  neighbors->north_east = GEOHASH_get_adjacent(neighbors->north, len, GEOHASH_EAST);
+  neighbors->north_west = GEOHASH_get_adjacent(neighbors->north, len, GEOHASH_WEST);
+  neighbors->south_east = GEOHASH_get_adjacent(neighbors->south, len, GEOHASH_EAST);
+  neighbors->south_west = GEOHASH_get_adjacent(neighbors->south, len, GEOHASH_WEST);
 
   return neighbors;
 }
 
 char *
-GEOHASH_get_adjacent(const char *hash, GEOHASH_direction dir)
+GEOHASH_get_adjacent(const char *hash, size_t len, GEOHASH_direction dir)
 {
-  int len, idx;
+
+  int idx;
   const char *border_table, *neighbor_table;
   char *base, *refined_base, *ptr, last;
 
   assert(hash != NULL);
 
-  len = strlen(hash);
   last = tolower(hash[len - 1]);
   idx = dir * 2 + (len % 2);
 
   border_table = BORDERS_TABLE[idx];
 
-  base = (char *)malloc(sizeof(char) * len);
+  base = (char *)malloc(sizeof(char) * (len + 1));
   if (base == NULL)
     return NULL;
+  memset(base, '\0', sizeof(char) * (len + 1));
+  strncpy(base, hash, len - 1);
 
-  memset(base, '\0', sizeof(char) * len);
-  memcpy(base, hash, len - 1);
 
   if (strchr(border_table, last) != NULL && len > 1)
   {
-    refined_base = GEOHASH_get_adjacent(base, dir);
+    refined_base = GEOHASH_get_adjacent(base, strlen(base), dir);
     if (refined_base == NULL)
     {
       free(base);
@@ -304,8 +309,8 @@ GEOHASH_get_adjacent(const char *hash, GEOHASH_direction dir)
   }
   idx = (int)(ptr - neighbor_table);
   len = strlen(base);
-
   base[len] = BASE32_ENCODE_TABLE[idx];
+  base[len + 1] = '\0';
 
   return base;
 }

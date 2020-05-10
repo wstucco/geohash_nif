@@ -41,13 +41,13 @@ extern "C"
     char *south_west;
   } GEOHASH_neighbors;
 
-  bool GEOHASH_verify_hash(const char *hash);
-  uint64_t GEOHASH_decode_to_bits(const char *hash);
+  bool GEOHASH_verify_hash(const char *hash, size_t len);
+  uint64_t GEOHASH_decode_to_bits(const char *hash, size_t len);
   char *GEOHASH_encode(double latitude, double longitude, unsigned int hash_length);
-  GEOHASH_area *GEOHASH_decode(const char *hash);
-  GEOHASH_neighbors *GEOHASH_get_neighbors(const char *hash);
+  GEOHASH_area *GEOHASH_decode(const char *hash, size_t len);
+  GEOHASH_neighbors *GEOHASH_get_neighbors(const char *hash, size_t len);
   void GEOHASH_free_neighbors(GEOHASH_neighbors *neighbors);
-  char *GEOHASH_get_adjacent(const char *hash, GEOHASH_direction dir);
+  char *GEOHASH_get_adjacent(const char *hash, size_t len, GEOHASH_direction dir);
   void GEOHASH_free_area(GEOHASH_area *area);
 
 #if defined(__cplusplus)
