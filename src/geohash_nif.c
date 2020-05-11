@@ -13,36 +13,6 @@ ERL_NIF_TERM err_atom;
 #define BOUNDARIES 4
 #define NEIGHBORS 8
 
-#define GET_BINARY(name, val)                      \
-  ErlNifBinary _##name;                            \
-  if (enif_inspect_binary(env, val, &_##name) < 1) \
-  {                                                \
-    return enif_make_badarg(env);                  \
-  }
-
-#define GET_BINARY3(name, val)                              \
-  ErlNifBinary _##name;                                     \
-  if (enif_inspect_binary(env, val, &_##name) < 1)          \
-  {                                                         \
-    return enif_make_badarg(env);                           \
-  };                                                        \
-  char name[_##name.size + 1];                              \
-  memcpy((void *)name, (void *)_##name.data, _##name.size); \
-  name[_##name.size] = '\0';                                \
-  enif_release_binary(&_##name)
-
-#define GET_BINARY2(name, val, block)                       \
-  ErlNifBinary _##name;                                     \
-  if (enif_inspect_binary(env, val, &_##name) < 1)          \
-  {                                                         \
-    (block);                                                \
-    return enif_make_badarg(env);                           \
-  };                                                        \
-  char name[_##name.size + 1];                              \
-  memcpy((void *)name, (void *)_##name.data, _##name.size); \
-  name[_##name.size] = '\0';                                \
-  enif_release_binary(&_##name)
-
 inline double _round(double n, unsigned short l)
 {
   double f = pow(10.0, l);
@@ -177,7 +147,7 @@ decode(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
   }
 
   GEOHASH_area *area;
-  area = GEOHASH_decode((const char*)hash.data, hash.size);
+  area = GEOHASH_decode((const char *)hash.data, hash.size);
 
   if (area == NULL)
   {
@@ -227,7 +197,7 @@ bounds(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
   }
 
   GEOHASH_area *area;
-  area = GEOHASH_decode((const char*)hash.data, hash.size);
+  area = GEOHASH_decode((const char *)hash.data, hash.size);
   if (area == NULL)
   {
     enif_release_binary(&hash);
@@ -300,13 +270,13 @@ neighbors(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
     return enif_make_badarg(env);
   }
 
-  if (!GEOHASH_verify_hash((const char*)hash.data, hash.size))
+  if (!GEOHASH_verify_hash((const char *)hash.data, hash.size))
   {
     return make_error(env, "invalid hash");
   }
 
   GEOHASH_neighbors *neighbors;
-  neighbors = GEOHASH_get_neighbors((const char *)(const char*)hash.data, hash.size);
+  neighbors = GEOHASH_get_neighbors((const char *)(const char *)hash.data, hash.size);
   assert(neighbors != NULL);
 
   ERL_NIF_TERM ret;
@@ -363,7 +333,7 @@ adjacent(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
     return enif_make_badarg(env);
   }
 
-  if (!GEOHASH_verify_hash((const char*)hash.data, hash.size))
+  if (!GEOHASH_verify_hash((const char *)hash.data, hash.size))
   {
     return make_error(env, "invalid hash");
   }
@@ -399,7 +369,7 @@ adjacent(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
   }
 
   const char *adjacent;
-  adjacent = (const char *)GEOHASH_get_adjacent((const char*)hash.data, hash.size, dir);
+  adjacent = (const char *)GEOHASH_get_adjacent((const char *)hash.data, hash.size, dir);
 
   assert(adjacent != NULL);
 
@@ -436,7 +406,7 @@ decode_to_bits(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
   }
 
   uint64_t bits;
-  bits = GEOHASH_decode_to_bits((const char*)hash.data, hash.size);
+  bits = GEOHASH_decode_to_bits((const char *)hash.data, hash.size);
 
   if (bits == 0)
   {
