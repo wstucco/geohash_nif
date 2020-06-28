@@ -6,12 +6,13 @@
 #include "erl_nif.h"
 #include "geohash.h"
 
-ERL_NIF_TERM ok_atom;
-ERL_NIF_TERM err_atom;
-
 #define MAXBUFLEN 1024
 #define BOUNDARIES 4
 #define NEIGHBORS 8
+
+static ERL_NIF_TERM ok_atom;
+static ERL_NIF_TERM err_atom;
+static ERL_NIF_TERM boundaries_atoms[BOUNDARIES];
 
 inline double _round(double n, unsigned short l)
 {
@@ -50,6 +51,11 @@ load(ErlNifEnv *env, void **priv, ERL_NIF_TERM load_info)
 {
   enif_make_existing_atom(env, "ok", &ok_atom, ERL_NIF_LATIN1);
   enif_make_existing_atom(env, "error", &err_atom, ERL_NIF_LATIN1);
+
+  boundaries_atoms[0] = enif_make_atom(env, "max_lat");
+  boundaries_atoms[1] = enif_make_atom(env, "max_lon");
+  boundaries_atoms[2] = enif_make_atom(env, "min_lat");
+  boundaries_atoms[3] = enif_make_atom(env, "min_lon");
 
   return 0;
 }
@@ -205,12 +211,6 @@ bounds(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
   }
 
   ERL_NIF_TERM ret;
-  ERL_NIF_TERM keys[BOUNDARIES] = {
-      enif_make_atom(env, "max_lat"),
-      enif_make_atom(env, "max_lon"),
-      enif_make_atom(env, "min_lat"),
-      enif_make_atom(env, "min_lon"),
-  };
   ERL_NIF_TERM values[BOUNDARIES] = {
       enif_make_double(env, area->latitude.max),
       enif_make_double(env, area->longitude.max),
@@ -218,7 +218,7 @@ bounds(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
       enif_make_double(env, area->longitude.min),
   };
 
-  enif_make_map_from_arrays(env, keys, values, BOUNDARIES, &ret);
+  enif_make_map_from_arrays(env, boundaries_atoms, values, BOUNDARIES, &ret);
 
   enif_release_binary(&hash);
   GEOHASH_free_area(area);

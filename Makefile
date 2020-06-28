@@ -1,4 +1,4 @@
-CFLAGS = -fPIC -O2 -Wno-unused-parameter -std=c99 -Wall
+CFLAGS = -fPIC -O3 -Wno-unused-parameter -Wall -std=c99
 
 ERLANG_PATH = $(shell erl -eval 'io:format("~s", [lists:concat([code:root_dir(), "/erts-", erlang:system_info(version), "/include"])])' -s init stop -noshell)
 
