@@ -33,10 +33,10 @@ inline double _round(double n, unsigned short l)
 
 inline ERL_NIF_TERM make_binary(ErlNifEnv *env, const char *value, size_t size)
 {
-  ErlNifBinary output_binary;
-  enif_alloc_binary(size, &output_binary);
-  memcpy((char *)output_binary.data, value, size);
-  return enif_make_binary(env, &output_binary);
+  ERL_NIF_TERM term;
+  unsigned char *bin = enif_make_new_binary(env, size, &term);
+  memcpy(bin, value, size);
+  return term;
 }
 
 inline static ERL_NIF_TERM make_error(ErlNifEnv *env, const char *error)
