@@ -131,7 +131,7 @@ defmodule GeohashTest do
       {lat_threshold, _} = Float.parse("1e-#{lat_precision}")
       {lng_threshold, _} = Float.parse("1e-#{lng_precision}")
 
-       ok? = new_lat_error <= lat_threshold and new_lng_error <= lng_threshold
+      ok? = new_lat_error <= lat_threshold and new_lng_error <= lng_threshold
 
       unless ok? do
         IO.inspect({"coords", {lat, lng}})
