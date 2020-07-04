@@ -17,6 +17,7 @@ struct atoms
   ERL_NIF_TERM atom_error;
 
   ERL_NIF_TERM boundaries_atoms[BOUNDARIES];
+  ERL_NIF_TERM neighbors_atoms[NEIGHBORS];
 } ATOMS;
 
 inline ERL_NIF_TERM make_atom(ErlNifEnv *env, const char *name)
@@ -72,6 +73,15 @@ load(ErlNifEnv *env, void **priv, ERL_NIF_TERM load_info)
   ATOMS.boundaries_atoms[1] = make_atom(env, "max_lon");
   ATOMS.boundaries_atoms[2] = make_atom(env, "min_lat");
   ATOMS.boundaries_atoms[3] = make_atom(env, "min_lon");
+
+  ATOMS.neighbors_atoms[0] = make_atom(env, "n");
+  ATOMS.neighbors_atoms[1] = make_atom(env, "s");
+  ATOMS.neighbors_atoms[2] = make_atom(env, "e");
+  ATOMS.neighbors_atoms[3] = make_atom(env, "w");
+  ATOMS.neighbors_atoms[4] = make_atom(env, "ne");
+  ATOMS.neighbors_atoms[5] = make_atom(env, "se");
+  ATOMS.neighbors_atoms[6] = make_atom(env, "nw");
+  ATOMS.neighbors_atoms[7] = make_atom(env, "sw");
 
   return 0;
 }
@@ -296,16 +306,7 @@ neighbors(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
   assert(neighbors != NULL);
 
   ERL_NIF_TERM ret;
-  ERL_NIF_TERM keys[NEIGHBORS] = {
-      make_binary(env, "n", 1),
-      make_binary(env, "s", 1),
-      make_binary(env, "e", 1),
-      make_binary(env, "w", 1),
-      make_binary(env, "ne", 2),
-      make_binary(env, "se", 2),
-      make_binary(env, "nw", 2),
-      make_binary(env, "sw", 2),
-  };
+
   ERL_NIF_TERM values[NEIGHBORS] = {
       make_binary(env, neighbors->north, hash.size),
       make_binary(env, neighbors->south, hash.size),
@@ -317,7 +318,7 @@ neighbors(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
       make_binary(env, neighbors->south_west, hash.size),
   };
 
-  enif_make_map_from_arrays(env, keys, values, NEIGHBORS, &ret);
+  enif_make_map_from_arrays(env, ATOMS.neighbors_atoms, values, NEIGHBORS, &ret);
   enif_release_binary(&hash);
 
   GEOHASH_free_neighbors(neighbors);
