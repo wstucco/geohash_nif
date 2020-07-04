@@ -10,9 +10,24 @@
 #define BOUNDARIES 4
 #define NEIGHBORS 8
 
-static ERL_NIF_TERM ok_atom;
-static ERL_NIF_TERM err_atom;
-static ERL_NIF_TERM boundaries_atoms[BOUNDARIES];
+struct atoms
+{
+  ERL_NIF_TERM atom_true;
+  ERL_NIF_TERM atom_false;
+  ERL_NIF_TERM atom_error;
+
+  ERL_NIF_TERM boundaries_atoms[BOUNDARIES];
+} ATOMS;
+
+inline ERL_NIF_TERM make_atom(ErlNifEnv *env, const char *name)
+{
+  ERL_NIF_TERM ret;
+
+  if (enif_make_existing_atom(env, name, &ret, ERL_NIF_LATIN1))
+    return ret;
+
+  return enif_make_atom(env, name);
+}
 
 inline double _round(double n, unsigned short l)
 {
@@ -42,20 +57,21 @@ inline ERL_NIF_TERM make_binary(ErlNifEnv *env, const char *value, size_t size)
 inline static ERL_NIF_TERM make_error(ErlNifEnv *env, const char *error)
 {
   return enif_make_tuple2(env,
-                          err_atom,
+                          ATOMS.atom_error,
                           make_binary(env, error, strlen(error)));
 }
 
 static int
 load(ErlNifEnv *env, void **priv, ERL_NIF_TERM load_info)
 {
-  enif_make_existing_atom(env, "ok", &ok_atom, ERL_NIF_LATIN1);
-  enif_make_existing_atom(env, "error", &err_atom, ERL_NIF_LATIN1);
+  ATOMS.atom_true = make_atom(env, "true");
+  ATOMS.atom_false = make_atom(env, "false");
+  ATOMS.atom_error = make_atom(env, "error");
 
-  boundaries_atoms[0] = enif_make_atom(env, "max_lat");
-  boundaries_atoms[1] = enif_make_atom(env, "max_lon");
-  boundaries_atoms[2] = enif_make_atom(env, "min_lat");
-  boundaries_atoms[3] = enif_make_atom(env, "min_lon");
+  ATOMS.boundaries_atoms[0] = make_atom(env, "max_lat");
+  ATOMS.boundaries_atoms[1] = make_atom(env, "max_lon");
+  ATOMS.boundaries_atoms[2] = make_atom(env, "min_lat");
+  ATOMS.boundaries_atoms[3] = make_atom(env, "min_lon");
 
   return 0;
 }
@@ -218,7 +234,7 @@ bounds(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
       enif_make_double(env, area->longitude.min),
   };
 
-  enif_make_map_from_arrays(env, boundaries_atoms, values, BOUNDARIES, &ret);
+  enif_make_map_from_arrays(env, ATOMS.boundaries_atoms, values, BOUNDARIES, &ret);
 
   enif_release_binary(&hash);
   GEOHASH_free_area(area);
