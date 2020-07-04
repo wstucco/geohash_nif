@@ -2,6 +2,8 @@ defmodule GeohashTest do
   use ExUnit.Case
   use ExUnitProperties
 
+  doctest Geohash
+
   test "Geohash.encode" do
     assert Geohash.encode(57.64911, 10.40744) == "u4pruydqqvj"
     assert Geohash.encode(50.958087, 6.9204459) == "u1hcvkxk65f"
