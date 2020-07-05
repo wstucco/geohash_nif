@@ -6,7 +6,7 @@ defmodule GeohashNif.MixProject do
   def project do
     [
       app: :geohash_nif,
-      version: "0.1.0",
+      version: @version,
       elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:nif, :elixir, :app],
@@ -15,7 +15,8 @@ defmodule GeohashNif.MixProject do
       package: package(),
       description: description(),
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      docs: docs()
     ]
   end
 
@@ -60,7 +61,20 @@ defmodule GeohashNif.MixProject do
       {:benchee, "~> 1.0", only: :test},
       {:benchee_html, "~> 1.0", only: :test},
       {:geohash, "~> 1.2", only: :test},
-      {:stream_data, "~> 0.1", only: :test}
+      {:stream_data, "~> 0.1", only: :test},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
+    ]
+  end
+
+  defp docs() do
+    [
+      main: "readme",
+      name: "GeohashNif",
+      canonical: "http://hexdocs.pm/geohash_nif/#{@version}/",
+      source_url: "https://gitlab.com/wstucco/geohash_nif",
+      extras: [
+        "README.md"
+      ]
     ]
   end
 end
