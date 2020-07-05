@@ -1,0 +1,1511 @@
+Operating System: Linux
+CPU Information: Intel(R) Core(TM) i7-6820HQ CPU @ 2.70GHz
+Number of Available Cores: 8
+Available memory: 62.29 GB
+Elixir 1.10.3
+Erlang 23.0.2
+
+Benchmark suite executing with the following configuration:
+warmup: 0 ns
+time: 1 s
+memory time: 1 s
+parallel: 1
+inputs: length: 01, length: 02, length: 03, length: 04, length: 05, length: 06, length: 07, length: 08, length: 09, length: 10, length: 11, length: 12
+Estimated total run time: 48 s
+
+Benchmarking encode with Elixir with input length: 01...
+Benchmarking encode with Elixir with input length: 02...
+Benchmarking encode with Elixir with input length: 03...
+Benchmarking encode with Elixir with input length: 04...
+Benchmarking encode with Elixir with input length: 05...
+Benchmarking encode with Elixir with input length: 06...
+Benchmarking encode with Elixir with input length: 07...
+Benchmarking encode with Elixir with input length: 08...
+Benchmarking encode with Elixir with input length: 09...
+Benchmarking encode with Elixir with input length: 10...
+Benchmarking encode with Elixir with input length: 11...
+Benchmarking encode with Elixir with input length: 12...
+Benchmarking encode with NIF with input length: 01...
+Benchmarking encode with NIF with input length: 02...
+Benchmarking encode with NIF with input length: 03...
+Benchmarking encode with NIF with input length: 04...
+Benchmarking encode with NIF with input length: 05...
+Benchmarking encode with NIF with input length: 06...
+Benchmarking encode with NIF with input length: 07...
+Benchmarking encode with NIF with input length: 08...
+Benchmarking encode with NIF with input length: 09...
+Benchmarking encode with NIF with input length: 10...
+Benchmarking encode with NIF with input length: 11...
+Benchmarking encode with NIF with input length: 12...
+
+##### With input length: 01 #####
+Name                         ips        average  deviation         median         99th %
+encode with NIF          11.92 M       83.87 ns  ±4877.51%          66 ns         113 ns
+encode with Elixir        1.61 M      621.45 ns  ±1347.99%         534 ns         972 ns
+
+Comparison:
+encode with NIF          11.92 M
+encode with Elixir        1.61 M - 7.41x slower +537.58 ns
+
+Memory usage statistics:
+
+Name                  Memory usage
+encode with NIF               24 B
+encode with Elixir           456 B - 19.00x memory usage +432 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 02 #####
+Name                         ips        average  deviation         median         99th %
+encode with NIF          11.54 M      0.0866 μs  ±3952.18%      0.0700 μs       0.125 μs
+encode with Elixir        0.95 M        1.06 μs   ±686.47%        0.85 μs        1.97 μs
+
+Comparison:
+encode with NIF          11.54 M
+encode with Elixir        0.95 M - 12.22x slower +0.97 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+encode with NIF               24 B
+encode with Elixir           720 B - 30.00x memory usage +696 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 03 #####
+Name                         ips        average  deviation         median         99th %
+encode with NIF          10.64 M      0.0940 μs  ±3557.84%      0.0780 μs       0.108 μs
+encode with Elixir        0.79 M        1.26 μs   ±413.86%        1.08 μs        2.79 μs
+
+Comparison:
+encode with NIF          10.64 M
+encode with Elixir        0.79 M - 13.41x slower +1.17 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+encode with NIF               24 B
+encode with Elixir           984 B - 41.00x memory usage +960 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 04 #####
+Name                         ips        average  deviation         median         99th %
+encode with NIF           9.62 M       0.104 μs  ±3104.60%      0.0870 μs       0.150 μs
+encode with Elixir        0.63 M        1.59 μs   ±337.25%        1.34 μs        4.38 μs
+
+Comparison:
+encode with NIF           9.62 M
+encode with Elixir        0.63 M - 15.34x slower +1.49 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+encode with NIF          0.0234 KB
+encode with Elixir         1.22 KB - 52.00x memory usage +1.20 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 05 #####
+Name                         ips        average  deviation         median         99th %
+encode with NIF           8.65 M       0.116 μs  ±3087.50%      0.0970 μs       0.156 μs
+encode with Elixir        0.55 M        1.83 μs   ±300.22%        1.62 μs        3.10 μs
+
+Comparison:
+encode with NIF           8.65 M
+encode with Elixir        0.55 M - 15.82x slower +1.71 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+encode with NIF          0.0234 KB
+encode with Elixir         1.48 KB - 63.00x memory usage +1.45 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 06 #####
+Name                         ips        average  deviation         median         99th %
+encode with NIF           8.08 M       0.124 μs  ±3129.44%       0.106 μs       0.139 μs
+encode with Elixir        0.45 M        2.21 μs   ±208.70%        1.99 μs        4.74 μs
+
+Comparison:
+encode with NIF           8.08 M
+encode with Elixir        0.45 M - 17.84x slower +2.09 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+encode with NIF          0.0234 KB
+encode with Elixir         1.77 KB - 75.33x memory usage +1.74 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 07 #####
+Name                         ips        average  deviation         median         99th %
+encode with NIF           7.55 M       0.133 μs  ±2427.76%       0.116 μs       0.156 μs
+encode with Elixir        0.41 M        2.44 μs   ±130.53%        2.25 μs        6.29 μs
+
+Comparison:
+encode with NIF           7.55 M
+encode with Elixir        0.41 M - 18.44x slower +2.31 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+encode with NIF          0.0234 KB
+encode with Elixir         2.01 KB - 85.67x memory usage +1.98 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 08 #####
+Name                         ips        average  deviation         median         99th %
+encode with NIF           6.92 M       0.144 μs  ±2437.99%       0.126 μs       0.160 μs
+encode with Elixir        0.37 M        2.69 μs   ±121.13%        2.41 μs        7.31 μs
+
+Comparison:
+encode with NIF           6.92 M
+encode with Elixir        0.37 M - 18.64x slower +2.55 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+encode with NIF          0.0234 KB
+encode with Elixir         2.20 KB - 93.67x memory usage +2.17 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 09 #####
+Name                         ips        average  deviation         median         99th %
+encode with NIF           6.73 M       0.149 μs   ±441.16%       0.136 μs       0.173 μs
+encode with Elixir        0.35 M        2.85 μs   ±168.98%        2.63 μs        5.77 μs
+
+Comparison:
+encode with NIF           6.73 M
+encode with Elixir        0.35 M - 19.14x slower +2.70 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+encode with NIF          0.0313 KB
+encode with Elixir         2.48 KB - 79.50x memory usage +2.45 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 10 #####
+Name                         ips        average  deviation         median         99th %
+encode with NIF           6.28 M       0.159 μs   ±336.10%       0.145 μs       0.189 μs
+encode with Elixir        0.32 M        3.08 μs   ±157.11%        2.87 μs        8.03 μs
+
+Comparison:
+encode with NIF           6.28 M
+encode with Elixir        0.32 M - 19.38x slower +2.93 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+encode with NIF          0.0313 KB
+encode with Elixir         2.73 KB - 87.25x memory usage +2.70 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 11 #####
+Name                         ips        average  deviation         median         99th %
+encode with NIF           5.90 M       0.170 μs   ±505.00%       0.155 μs        0.21 μs
+encode with Elixir        0.29 M        3.41 μs    ±75.59%        3.20 μs        8.95 μs
+
+Comparison:
+encode with NIF           5.90 M
+encode with Elixir        0.29 M - 20.14x slower +3.25 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+encode with NIF          0.0313 KB
+encode with Elixir         2.98 KB - 95.50x memory usage +2.95 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 12 #####
+Name                         ips        average  deviation         median         99th %
+encode with NIF           5.69 M       0.176 μs   ±356.40%       0.162 μs        0.22 μs
+encode with Elixir        0.27 M        3.74 μs    ±97.86%        3.47 μs       10.82 μs
+
+Comparison:
+encode with NIF           5.69 M
+encode with Elixir        0.27 M - 21.28x slower +3.56 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+encode with NIF          0.0313 KB
+encode with Elixir         3.23 KB - 103.25x memory usage +3.20 KB
+
+**All measurements for memory usage were the same**
+
+Operating System: Linux
+CPU Information: Intel(R) Core(TM) i7-6820HQ CPU @ 2.70GHz
+Number of Available Cores: 8
+Available memory: 62.29 GB
+Elixir 1.10.3
+Erlang 23.0.2
+
+Benchmark suite executing with the following configuration:
+warmup: 0 ns
+time: 1 s
+memory time: 1 s
+parallel: 1
+inputs: length: 01, length: 02, length: 03, length: 04, length: 05, length: 06, length: 07, length: 08, length: 09, length: 10, length: 11, length: 12
+Estimated total run time: 48 s
+
+Benchmarking decode with Elixir with input length: 01...
+Benchmarking decode with Elixir with input length: 02...
+Benchmarking decode with Elixir with input length: 03...
+Benchmarking decode with Elixir with input length: 04...
+Benchmarking decode with Elixir with input length: 05...
+Benchmarking decode with Elixir with input length: 06...
+Benchmarking decode with Elixir with input length: 07...
+Benchmarking decode with Elixir with input length: 08...
+Benchmarking decode with Elixir with input length: 09...
+Benchmarking decode with Elixir with input length: 10...
+Benchmarking decode with Elixir with input length: 11...
+Benchmarking decode with Elixir with input length: 12...
+Benchmarking decode with NIF with input length: 01...
+Benchmarking decode with NIF with input length: 02...
+Benchmarking decode with NIF with input length: 03...
+Benchmarking decode with NIF with input length: 04...
+Benchmarking decode with NIF with input length: 05...
+Benchmarking decode with NIF with input length: 06...
+Benchmarking decode with NIF with input length: 07...
+Benchmarking decode with NIF with input length: 08...
+Benchmarking decode with NIF with input length: 09...
+Benchmarking decode with NIF with input length: 10...
+Benchmarking decode with NIF with input length: 11...
+Benchmarking decode with NIF with input length: 12...
+
+##### With input length: 01 #####
+Name                         ips        average  deviation         median         99th %
+decode with NIF           6.55 M       0.153 μs  ±2086.39%       0.125 μs        0.28 μs
+decode with Elixir        0.47 M        2.11 μs   ±285.05%        1.70 μs       14.21 μs
+
+Comparison:
+decode with NIF           6.55 M
+decode with Elixir        0.47 M - 13.83x slower +1.96 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+decode with NIF          0.0547 KB
+decode with Elixir         1.59 KB - 29.00x memory usage +1.53 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 02 #####
+Name                         ips        average  deviation         median         99th %
+decode with NIF           5.39 M       0.186 μs  ±1501.30%       0.153 μs        0.28 μs
+decode with Elixir       0.178 M        5.63 μs   ±114.40%        4.60 μs       23.73 μs
+
+Comparison:
+decode with NIF           5.39 M
+decode with Elixir       0.178 M - 30.36x slower +5.45 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+decode with NIF          0.0547 KB
+decode with Elixir         3.11 KB - 56.86x memory usage +3.05 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 03 #####
+Name                         ips        average  deviation         median         99th %
+decode with NIF           4.83 M        0.21 μs  ±1373.01%       0.181 μs        0.31 μs
+decode with Elixir       0.117 M        8.58 μs    ±65.63%        7.38 μs       27.51 μs
+
+Comparison:
+decode with NIF           4.83 M
+decode with Elixir       0.117 M - 41.47x slower +8.38 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+decode with NIF          0.0547 KB
+decode with Elixir         4.63 KB - 84.71x memory usage +4.58 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 04 #####
+Name                         ips        average  deviation         median         99th %
+decode with NIF           4.56 M        0.22 μs  ±1333.24%       0.189 μs        0.46 μs
+decode with Elixir      0.0990 M       10.10 μs    ±50.62%        8.47 μs       28.19 μs
+
+Comparison:
+decode with NIF           4.56 M
+decode with Elixir      0.0990 M - 46.03x slower +9.88 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+decode with NIF          0.0547 KB
+decode with Elixir         5.86 KB - 107.14x memory usage +5.80 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 05 #####
+Name                         ips        average  deviation         median         99th %
+decode with NIF           4.27 M        0.23 μs  ±1355.45%        0.20 μs        0.33 μs
+decode with Elixir      0.0839 M       11.92 μs    ±44.89%       10.53 μs       35.47 μs
+
+Comparison:
+decode with NIF           4.27 M
+decode with Elixir      0.0839 M - 50.87x slower +11.68 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+decode with NIF          0.0547 KB
+decode with Elixir         7.09 KB - 129.57x memory usage +7.03 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 06 #####
+Name                         ips        average  deviation         median         99th %
+decode with NIF           4.12 M        0.24 μs  ±1199.42%        0.21 μs        0.35 μs
+decode with Elixir      0.0786 M       12.72 μs    ±40.96%       11.40 μs       31.60 μs
+
+Comparison:
+decode with NIF           4.12 M
+decode with Elixir      0.0786 M - 52.43x slower +12.47 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+decode with NIF          0.0547 KB
+decode with Elixir         8.31 KB - 152.00x memory usage +8.26 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 07 #####
+Name                         ips        average  deviation         median         99th %
+decode with NIF           4.06 M        0.25 μs  ±1186.39%        0.22 μs        0.33 μs
+decode with Elixir      0.0756 M       13.23 μs    ±39.34%       11.90 μs       37.74 μs
+
+Comparison:
+decode with NIF           4.06 M
+decode with Elixir      0.0756 M - 53.76x slower +12.98 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+decode with NIF          0.0547 KB
+decode with Elixir         9.54 KB - 174.43x memory usage +9.48 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 08 #####
+Name                         ips        average  deviation         median         99th %
+decode with NIF           3.83 M        0.26 μs  ±1096.68%        0.23 μs        0.38 μs
+decode with Elixir      0.0694 M       14.41 μs    ±36.41%       12.89 μs       36.69 μs
+
+Comparison:
+decode with NIF           3.83 M
+decode with Elixir      0.0694 M - 55.16x slower +14.15 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+decode with NIF          0.0547 KB
+decode with Elixir        10.77 KB - 196.86x memory usage +10.71 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 09 #####
+Name                         ips        average  deviation         median         99th %
+decode with NIF           3.72 M        0.27 μs  ±1031.60%        0.23 μs        0.39 μs
+decode with Elixir      0.0620 M       16.13 μs    ±38.82%       14.04 μs       45.21 μs
+
+Comparison:
+decode with NIF           3.72 M
+decode with Elixir      0.0620 M - 60.08x slower +15.86 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+decode with NIF          0.0547 KB
+decode with Elixir        11.99 KB - 219.29x memory usage +11.94 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 10 #####
+Name                         ips        average  deviation         median         99th %
+decode with NIF           3.62 M        0.28 μs  ±1053.93%        0.24 μs        0.37 μs
+decode with Elixir      0.0585 M       17.11 μs    ±32.80%       15.54 μs       40.27 μs
+
+Comparison:
+decode with NIF           3.62 M
+decode with Elixir      0.0585 M - 61.93x slower +16.83 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+decode with NIF          0.0547 KB
+decode with Elixir        13.22 KB - 241.71x memory usage +13.16 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 11 #####
+Name                         ips        average  deviation         median         99th %
+decode with NIF           3.46 M        0.29 μs  ±1100.29%        0.25 μs        0.58 μs
+decode with Elixir      0.0570 M       17.55 μs    ±34.75%       15.36 μs       41.89 μs
+
+Comparison:
+decode with NIF           3.46 M
+decode with Elixir      0.0570 M - 60.80x slower +17.26 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+decode with NIF          0.0547 KB
+decode with Elixir        14.45 KB - 264.14x memory usage +14.39 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 12 #####
+Name                         ips        average  deviation         median         99th %
+decode with NIF           3.33 M        0.30 μs  ±1039.42%        0.26 μs        0.40 μs
+decode with Elixir      0.0551 M       18.15 μs    ±31.27%       16.70 μs       48.32 μs
+
+Comparison:
+decode with NIF           3.33 M
+decode with Elixir      0.0551 M - 60.48x slower +17.85 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+decode with NIF          0.0547 KB
+decode with Elixir        15.67 KB - 286.57x memory usage +15.62 KB
+
+**All measurements for memory usage were the same**
+
+Operating System: Linux
+CPU Information: Intel(R) Core(TM) i7-6820HQ CPU @ 2.70GHz
+Number of Available Cores: 8
+Available memory: 62.29 GB
+Elixir 1.10.3
+Erlang 23.0.2
+
+Benchmark suite executing with the following configuration:
+warmup: 0 ns
+time: 1 s
+memory time: 1 s
+parallel: 1
+inputs: length: 01, length: 02, length: 03, length: 04, length: 05, length: 06, length: 07, length: 08, length: 09, length: 10, length: 11, length: 12
+Estimated total run time: 48 s
+
+Benchmarking bounds with Elixir with input length: 01...
+Benchmarking bounds with Elixir with input length: 02...
+Benchmarking bounds with Elixir with input length: 03...
+Benchmarking bounds with Elixir with input length: 04...
+Benchmarking bounds with Elixir with input length: 05...
+Benchmarking bounds with Elixir with input length: 06...
+Benchmarking bounds with Elixir with input length: 07...
+Benchmarking bounds with Elixir with input length: 08...
+Benchmarking bounds with Elixir with input length: 09...
+Benchmarking bounds with Elixir with input length: 10...
+Benchmarking bounds with Elixir with input length: 11...
+Benchmarking bounds with Elixir with input length: 12...
+Benchmarking bounds with NIF with input length: 01...
+Benchmarking bounds with NIF with input length: 02...
+Benchmarking bounds with NIF with input length: 03...
+Benchmarking bounds with NIF with input length: 04...
+Benchmarking bounds with NIF with input length: 05...
+Benchmarking bounds with NIF with input length: 06...
+Benchmarking bounds with NIF with input length: 07...
+Benchmarking bounds with NIF with input length: 08...
+Benchmarking bounds with NIF with input length: 09...
+Benchmarking bounds with NIF with input length: 10...
+Benchmarking bounds with NIF with input length: 11...
+Benchmarking bounds with NIF with input length: 12...
+
+##### With input length: 01 #####
+Name                         ips        average  deviation         median         99th %
+bounds with NIF           6.65 M       0.150 μs  ±4197.90%       0.120 μs        0.27 μs
+bounds with Elixir        0.47 M        2.11 μs   ±499.68%        1.56 μs       14.44 μs
+
+Comparison:
+bounds with NIF           6.65 M
+bounds with Elixir        0.47 M - 14.01x slower +1.96 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+bounds with NIF           0.156 KB
+bounds with Elixir         1.46 KB - 9.35x memory usage +1.30 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 02 #####
+Name                         ips        average  deviation         median         99th %
+bounds with NIF           6.30 M       0.159 μs  ±4400.13%       0.130 μs        0.28 μs
+bounds with Elixir        0.35 M        2.88 μs   ±248.66%        2.35 μs       19.18 μs
+
+Comparison:
+bounds with NIF           6.30 M
+bounds with Elixir        0.35 M - 18.16x slower +2.72 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+bounds with NIF           0.156 KB
+bounds with Elixir         2.69 KB - 17.20x memory usage +2.53 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 03 #####
+Name                         ips        average  deviation         median         99th %
+bounds with NIF           5.63 M       0.178 μs  ±4119.58%       0.143 μs        0.33 μs
+bounds with Elixir        0.29 M        3.49 μs   ±129.46%        3.03 μs       16.83 μs
+
+Comparison:
+bounds with NIF           5.63 M
+bounds with Elixir        0.29 M - 19.63x slower +3.31 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+bounds with NIF           0.156 KB
+bounds with Elixir         3.91 KB - 25.05x memory usage +3.76 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 04 #####
+Name                         ips        average  deviation         median         99th %
+bounds with NIF           5.41 M       0.185 μs  ±3541.38%       0.152 μs        0.31 μs
+bounds with Elixir        0.23 M        4.39 μs    ±96.34%        3.75 μs       21.56 μs
+
+Comparison:
+bounds with NIF           5.41 M
+bounds with Elixir        0.23 M - 23.76x slower +4.21 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+bounds with NIF           0.156 KB
+bounds with Elixir         5.14 KB - 32.90x memory usage +4.98 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 05 #####
+Name                         ips        average  deviation         median         99th %
+bounds with NIF           5.30 M       0.189 μs  ±3574.55%       0.160 μs        0.25 μs
+bounds with Elixir       0.192 M        5.21 μs   ±108.07%        4.52 μs       23.10 μs
+
+Comparison:
+bounds with NIF           5.30 M
+bounds with Elixir       0.192 M - 27.65x slower +5.03 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+bounds with NIF           0.156 KB
+bounds with Elixir         6.37 KB - 40.75x memory usage +6.21 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 06 #####
+Name                         ips        average  deviation         median         99th %
+bounds with NIF           4.40 M        0.23 μs  ±3043.21%       0.186 μs        0.45 μs
+bounds with Elixir       0.179 M        5.58 μs    ±63.88%        4.96 μs       19.35 μs
+
+Comparison:
+bounds with NIF           4.40 M
+bounds with Elixir       0.179 M - 24.55x slower +5.35 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+bounds with NIF           0.156 KB
+bounds with Elixir         7.59 KB - 48.60x memory usage +7.44 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 07 #####
+Name                         ips        average  deviation         median         99th %
+bounds with NIF           3.79 M        0.26 μs  ±5952.37%       0.191 μs        0.69 μs
+bounds with Elixir       0.151 M        6.62 μs    ±60.35%        5.88 μs       24.27 μs
+
+Comparison:
+bounds with NIF           3.79 M
+bounds with Elixir       0.151 M - 25.05x slower +6.35 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+bounds with NIF           0.156 KB
+bounds with Elixir         8.82 KB - 56.45x memory usage +8.66 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 08 #####
+Name                         ips        average  deviation         median         99th %
+bounds with NIF           4.13 M        0.24 μs  ±2981.87%       0.194 μs        0.48 μs
+bounds with Elixir       0.135 M        7.42 μs    ±58.39%        6.60 μs       25.18 μs
+
+Comparison:
+bounds with NIF           4.13 M
+bounds with Elixir       0.135 M - 30.64x slower +7.18 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+bounds with NIF           0.156 KB
+bounds with Elixir        10.05 KB - 64.30x memory usage +9.89 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 09 #####
+Name                         ips        average  deviation         median         99th %
+bounds with NIF           4.50 M        0.22 μs  ±3454.95%       0.191 μs        0.27 μs
+bounds with Elixir       0.120 M        8.31 μs    ±46.75%        7.35 μs       25.89 μs
+
+Comparison:
+bounds with NIF           4.50 M
+bounds with Elixir       0.120 M - 37.42x slower +8.09 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+bounds with NIF           0.156 KB
+bounds with Elixir        11.27 KB - 72.15x memory usage +11.12 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 10 #####
+Name                         ips        average  deviation         median         99th %
+bounds with NIF           4.05 M        0.25 μs  ±2689.34%        0.21 μs        0.43 μs
+bounds with Elixir       0.115 M        8.67 μs    ±41.17%        7.88 μs       26.46 μs
+
+Comparison:
+bounds with NIF           4.05 M
+bounds with Elixir       0.115 M - 35.15x slower +8.42 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+bounds with NIF           0.156 KB
+bounds with Elixir        12.50 KB - 80.00x memory usage +12.34 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 11 #####
+Name                         ips        average  deviation         median         99th %
+bounds with NIF           3.92 M        0.26 μs  ±2702.94%        0.22 μs        0.45 μs
+bounds with Elixir       0.103 M        9.67 μs    ±42.51%        8.64 μs       27.62 μs
+
+Comparison:
+bounds with NIF           3.92 M
+bounds with Elixir       0.103 M - 37.87x slower +9.41 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+bounds with NIF           0.156 KB
+bounds with Elixir        13.73 KB - 87.85x memory usage +13.57 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 12 #####
+Name                         ips        average  deviation         median         99th %
+bounds with NIF           4.05 M        0.25 μs  ±2664.04%        0.22 μs        0.51 μs
+bounds with Elixir      0.0959 M       10.43 μs    ±37.67%        9.43 μs       28.48 μs
+
+Comparison:
+bounds with NIF           4.05 M
+bounds with Elixir      0.0959 M - 42.22x slower +10.18 μs
+
+Memory usage statistics:
+
+Name                  Memory usage
+bounds with NIF           0.156 KB
+bounds with Elixir        14.95 KB - 95.70x memory usage +14.80 KB
+
+**All measurements for memory usage were the same**
+
+Operating System: Linux
+CPU Information: Intel(R) Core(TM) i7-6820HQ CPU @ 2.70GHz
+Number of Available Cores: 8
+Available memory: 62.29 GB
+Elixir 1.10.3
+Erlang 23.0.2
+
+Benchmark suite executing with the following configuration:
+warmup: 0 ns
+time: 1 s
+memory time: 1 s
+parallel: 1
+inputs: length: 01, length: 02, length: 03, length: 04, length: 05, length: 06, length: 07, length: 08, length: 09, length: 10, length: 11, length: 12
+Estimated total run time: 48 s
+
+Benchmarking adjacent with Elixir with input length: 01...
+Benchmarking adjacent with Elixir with input length: 02...
+Benchmarking adjacent with Elixir with input length: 03...
+Benchmarking adjacent with Elixir with input length: 04...
+Benchmarking adjacent with Elixir with input length: 05...
+Benchmarking adjacent with Elixir with input length: 06...
+Benchmarking adjacent with Elixir with input length: 07...
+Benchmarking adjacent with Elixir with input length: 08...
+Benchmarking adjacent with Elixir with input length: 09...
+Benchmarking adjacent with Elixir with input length: 10...
+Benchmarking adjacent with Elixir with input length: 11...
+Benchmarking adjacent with Elixir with input length: 12...
+Benchmarking adjacent with NIF with input length: 01...
+Benchmarking adjacent with NIF with input length: 02...
+Benchmarking adjacent with NIF with input length: 03...
+Benchmarking adjacent with NIF with input length: 04...
+Benchmarking adjacent with NIF with input length: 05...
+Benchmarking adjacent with NIF with input length: 06...
+Benchmarking adjacent with NIF with input length: 07...
+Benchmarking adjacent with NIF with input length: 08...
+Benchmarking adjacent with NIF with input length: 09...
+Benchmarking adjacent with NIF with input length: 10...
+Benchmarking adjacent with NIF with input length: 11...
+Benchmarking adjacent with NIF with input length: 12...
+
+##### With input length: 01 #####
+Name                           ips        average  deviation         median         99th %
+adjacent with NIF           7.56 M      132.25 ns  ±2731.76%         109 ns         195 ns
+adjacent with Elixir        1.26 M      793.11 ns  ±2043.26%         511 ns        1138 ns
+
+Comparison:
+adjacent with NIF           7.56 M
+adjacent with Elixir        1.26 M - 6.00x slower +660.86 ns
+
+Memory usage statistics:
+
+Name                    Memory usage
+adjacent with NIF               24 B
+adjacent with Elixir           232 B - 9.67x memory usage +208 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 02 #####
+Name                           ips        average  deviation         median         99th %
+adjacent with NIF           4.68 M        0.21 μs  ±2066.43%       0.179 μs        0.34 μs
+adjacent with Elixir        0.77 M        1.30 μs  ±1283.86%        0.92 μs        1.90 μs
+
+Comparison:
+adjacent with NIF           4.68 M
+adjacent with Elixir        0.77 M - 6.08x slower +1.09 μs
+
+Memory usage statistics:
+
+Name                    Memory usage
+adjacent with NIF               24 B
+adjacent with Elixir           424 B - 17.67x memory usage +400 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 03 #####
+Name                           ips        average  deviation         median         99th %
+adjacent with NIF           3.73 M        0.27 μs  ±1526.51%        0.24 μs        0.36 μs
+adjacent with Elixir        0.58 M        1.72 μs   ±781.31%        1.35 μs        2.54 μs
+
+Comparison:
+adjacent with NIF           3.73 M
+adjacent with Elixir        0.58 M - 6.40x slower +1.45 μs
+
+Memory usage statistics:
+
+Name                    Memory usage
+adjacent with NIF               24 B
+adjacent with Elixir           616 B - 25.67x memory usage +592 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 04 #####
+Name                           ips        average  deviation         median         99th %
+adjacent with NIF           2.89 M        0.35 μs  ±1188.82%        0.31 μs        0.49 μs
+adjacent with Elixir        0.45 M        2.22 μs   ±701.58%        1.80 μs        3.23 μs
+
+Comparison:
+adjacent with NIF           2.89 M
+adjacent with Elixir        0.45 M - 6.41x slower +1.87 μs
+
+Memory usage statistics:
+
+Name                    Memory usage
+adjacent with NIF               24 B
+adjacent with Elixir           808 B - 33.67x memory usage +784 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 05 #####
+Name                           ips        average  deviation         median         99th %
+adjacent with NIF           7.50 M      133.38 ns  ±2387.97%         115 ns         160 ns
+adjacent with Elixir        1.37 M      731.15 ns  ±1822.55%         516 ns        1124 ns
+
+Comparison:
+adjacent with NIF           7.50 M
+adjacent with Elixir        1.37 M - 5.48x slower +597.77 ns
+
+Memory usage statistics:
+
+Name                    Memory usage
+adjacent with NIF               24 B
+adjacent with Elixir           240 B - 10.00x memory usage +216 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 06 #####
+Name                           ips        average  deviation         median         99th %
+adjacent with NIF           5.00 M        0.20 μs  ±1930.83%       0.180 μs        0.23 μs
+adjacent with Elixir        0.79 M        1.26 μs  ±1116.84%        0.96 μs        1.77 μs
+
+Comparison:
+adjacent with NIF           5.00 M
+adjacent with Elixir        0.79 M - 6.32x slower +1.06 μs
+
+Memory usage statistics:
+
+Name                    Memory usage
+adjacent with NIF               24 B
+adjacent with Elixir           432 B - 18.00x memory usage +408 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 07 #####
+Name                           ips        average  deviation         median         99th %
+adjacent with NIF           7.17 M      139.44 ns  ±2379.03%         121 ns         229 ns
+adjacent with Elixir        1.37 M      730.41 ns  ±1800.31%         508 ns        1640 ns
+
+Comparison:
+adjacent with NIF           7.17 M
+adjacent with Elixir        1.37 M - 5.24x slower +590.96 ns
+
+Memory usage statistics:
+
+Name                    Memory usage
+adjacent with NIF               24 B
+adjacent with Elixir           240 B - 10.00x memory usage +216 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 08 #####
+Name                           ips        average  deviation         median         99th %
+adjacent with NIF           7.04 M      142.09 ns  ±2663.41%         124 ns         157 ns
+adjacent with Elixir        1.37 M      730.20 ns  ±1805.97%         507 ns        1600 ns
+
+Comparison:
+adjacent with NIF           7.04 M
+adjacent with Elixir        1.37 M - 5.14x slower +588.11 ns
+
+Memory usage statistics:
+
+Name                    Memory usage
+adjacent with NIF               24 B
+adjacent with Elixir           240 B - 10.00x memory usage +216 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 09 #####
+Name                           ips        average  deviation         median         99th %
+adjacent with NIF           7.22 M      138.44 ns   ±566.13%         127 ns         179 ns
+adjacent with Elixir        1.03 M      966.29 ns  ±2523.76%         597 ns        2067 ns
+
+Comparison:
+adjacent with NIF           7.22 M
+adjacent with Elixir        1.03 M - 6.98x slower +827.85 ns
+
+Memory usage statistics:
+
+Name                    Memory usage
+adjacent with NIF               32 B
+adjacent with Elixir           240 B - 7.50x memory usage +208 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 10 #####
+Name                           ips        average  deviation         median         99th %
+adjacent with NIF           5.57 M      179.50 ns   ±532.95%         146 ns         442 ns
+adjacent with Elixir        1.03 M      966.56 ns  ±1728.74%         563 ns        1970 ns
+
+Comparison:
+adjacent with NIF           5.57 M
+adjacent with Elixir        1.03 M - 5.38x slower +787.06 ns
+
+Memory usage statistics:
+
+Name                    Memory usage
+adjacent with NIF               32 B
+adjacent with Elixir           248 B - 7.75x memory usage +216 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 11 #####
+Name                           ips        average  deviation         median         99th %
+adjacent with NIF           3.94 M        0.25 μs   ±400.22%        0.22 μs        0.52 μs
+adjacent with Elixir        0.78 M        1.27 μs   ±929.87%        0.95 μs        1.81 μs
+
+Comparison:
+adjacent with NIF           3.94 M
+adjacent with Elixir        0.78 M - 5.02x slower +1.02 μs
+
+Memory usage statistics:
+
+Name                    Memory usage
+adjacent with NIF               32 B
+adjacent with Elixir           448 B - 14.00x memory usage +416 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 12 #####
+Name                           ips        average  deviation         median         99th %
+adjacent with NIF           5.88 M      170.08 ns   ±470.67%         145 ns         377 ns
+adjacent with Elixir        1.15 M      868.32 ns  ±1850.14%         533 ns        1228 ns
+
+Comparison:
+adjacent with NIF           5.88 M
+adjacent with Elixir        1.15 M - 5.11x slower +698.25 ns
+
+Memory usage statistics:
+
+Name                    Memory usage
+adjacent with NIF               32 B
+adjacent with Elixir           248 B - 7.75x memory usage +216 B
+
+**All measurements for memory usage were the same**
+
+Operating System: Linux
+CPU Information: Intel(R) Core(TM) i7-6820HQ CPU @ 2.70GHz
+Number of Available Cores: 8
+Available memory: 62.29 GB
+Elixir 1.10.3
+Erlang 23.0.2
+
+Benchmark suite executing with the following configuration:
+warmup: 0 ns
+time: 1 s
+memory time: 1 s
+parallel: 1
+inputs: length: 01, length: 02, length: 03, length: 04, length: 05, length: 06, length: 07, length: 08, length: 09, length: 10, length: 11, length: 12
+Estimated total run time: 1.20 min
+
+Benchmarking neighbors with Elixir with input length: 01...
+Benchmarking neighbors with Elixir with input length: 02...
+Benchmarking neighbors with Elixir with input length: 03...
+Benchmarking neighbors with Elixir with input length: 04...
+Benchmarking neighbors with Elixir with input length: 05...
+Benchmarking neighbors with Elixir with input length: 06...
+Benchmarking neighbors with Elixir with input length: 07...
+Benchmarking neighbors with Elixir with input length: 08...
+Benchmarking neighbors with Elixir with input length: 09...
+Benchmarking neighbors with Elixir with input length: 10...
+Benchmarking neighbors with Elixir with input length: 11...
+Benchmarking neighbors with Elixir with input length: 12...
+Benchmarking neighbors with NIF (atom keys) with input length: 01...
+Benchmarking neighbors with NIF (atom keys) with input length: 02...
+Benchmarking neighbors with NIF (atom keys) with input length: 03...
+Benchmarking neighbors with NIF (atom keys) with input length: 04...
+Benchmarking neighbors with NIF (atom keys) with input length: 05...
+Benchmarking neighbors with NIF (atom keys) with input length: 06...
+Benchmarking neighbors with NIF (atom keys) with input length: 07...
+Benchmarking neighbors with NIF (atom keys) with input length: 08...
+Benchmarking neighbors with NIF (atom keys) with input length: 09...
+Benchmarking neighbors with NIF (atom keys) with input length: 10...
+Benchmarking neighbors with NIF (atom keys) with input length: 11...
+Benchmarking neighbors with NIF (atom keys) with input length: 12...
+Benchmarking neighbors with NIF (binary keys) with input length: 01...
+Benchmarking neighbors with NIF (binary keys) with input length: 02...
+Benchmarking neighbors with NIF (binary keys) with input length: 03...
+Benchmarking neighbors with NIF (binary keys) with input length: 04...
+Benchmarking neighbors with NIF (binary keys) with input length: 05...
+Benchmarking neighbors with NIF (binary keys) with input length: 06...
+Benchmarking neighbors with NIF (binary keys) with input length: 07...
+Benchmarking neighbors with NIF (binary keys) with input length: 08...
+Benchmarking neighbors with NIF (binary keys) with input length: 09...
+Benchmarking neighbors with NIF (binary keys) with input length: 10...
+Benchmarking neighbors with NIF (binary keys) with input length: 11...
+Benchmarking neighbors with NIF (binary keys) with input length: 12...
+
+##### With input length: 01 #####
+Name                                       ips        average  deviation         median         99th %
+neighbors with NIF (atom keys)       1336.38 K        0.75 μs  ±1162.68%        0.62 μs        1.26 μs
+neighbors with NIF (binary keys)      917.52 K        1.09 μs   ±424.55%        0.88 μs        2.33 μs
+neighbors with Elixir                 167.61 K        5.97 μs   ±180.45%        4.58 μs       30.09 μs
+
+Comparison:
+neighbors with NIF (atom keys)       1336.38 K
+neighbors with NIF (binary keys)      917.52 K - 1.46x slower +0.34 μs
+neighbors with Elixir                 167.61 K - 7.97x slower +5.22 μs
+
+Memory usage statistics:
+
+Name                                Memory usage
+neighbors with NIF (atom keys)             352 B
+neighbors with NIF (binary keys)           544 B - 1.55x memory usage +192 B
+neighbors with Elixir                     1920 B - 5.45x memory usage +1568 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 02 #####
+Name                                       ips        average  deviation         median         99th %
+neighbors with NIF (atom keys)       1008.28 K        0.99 μs   ±483.53%        0.85 μs        1.85 μs
+neighbors with NIF (binary keys)      821.11 K        1.22 μs   ±387.13%        1.08 μs        2.42 μs
+neighbors with Elixir                 119.28 K        8.38 μs   ±167.01%        6.19 μs       45.96 μs
+
+Comparison:
+neighbors with NIF (atom keys)       1008.28 K
+neighbors with NIF (binary keys)      821.11 K - 1.23x slower +0.23 μs
+neighbors with Elixir                 119.28 K - 8.45x slower +7.39 μs
+
+Memory usage statistics:
+
+Name                                Memory usage
+neighbors with NIF (atom keys)             352 B
+neighbors with NIF (binary keys)           544 B - 1.55x memory usage +192 B
+neighbors with Elixir                     2560 B - 7.27x memory usage +2208 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 03 #####
+Name                                       ips        average  deviation         median         99th %
+neighbors with NIF (atom keys)        777.99 K        1.29 μs   ±421.62%        1.13 μs        2.41 μs
+neighbors with NIF (binary keys)      684.83 K        1.46 μs   ±341.53%        1.33 μs        2.57 μs
+neighbors with Elixir                  95.70 K       10.45 μs   ±105.75%        8.13 μs       54.68 μs
+
+Comparison:
+neighbors with NIF (atom keys)        777.99 K
+neighbors with NIF (binary keys)      684.83 K - 1.14x slower +0.175 μs
+neighbors with Elixir                  95.70 K - 8.13x slower +9.16 μs
+
+Memory usage statistics:
+
+Name                                Memory usage
+neighbors with NIF (atom keys)             352 B
+neighbors with NIF (binary keys)           544 B - 1.55x memory usage +192 B
+neighbors with Elixir                     3328 B - 9.45x memory usage +2976 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 04 #####
+Name                                       ips        average  deviation         median         99th %
+neighbors with NIF (atom keys)        695.04 K        1.44 μs   ±234.21%        1.28 μs        2.58 μs
+neighbors with NIF (binary keys)      637.54 K        1.57 μs   ±297.37%        1.46 μs        1.91 μs
+neighbors with Elixir                  79.99 K       12.50 μs    ±91.68%        9.12 μs       58.75 μs
+
+Comparison:
+neighbors with NIF (atom keys)        695.04 K
+neighbors with NIF (binary keys)      637.54 K - 1.09x slower +0.130 μs
+neighbors with Elixir                  79.99 K - 8.69x slower +11.06 μs
+
+Memory usage statistics:
+
+Name                                Memory usage
+neighbors with NIF (atom keys)             352 B
+neighbors with NIF (binary keys)           544 B - 1.55x memory usage +192 B
+neighbors with Elixir                     3688 B - 10.48x memory usage +3336 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 05 #####
+Name                                       ips        average  deviation         median         99th %
+neighbors with NIF (atom keys)       1194.93 K        0.84 μs   ±612.56%        0.72 μs        1.10 μs
+neighbors with NIF (binary keys)      907.07 K        1.10 μs   ±395.47%        0.99 μs        1.85 μs
+neighbors with Elixir                 142.87 K        7.00 μs   ±140.38%        5.37 μs       36.58 μs
+
+Comparison:
+neighbors with NIF (atom keys)       1194.93 K
+neighbors with NIF (binary keys)      907.07 K - 1.32x slower +0.27 μs
+neighbors with Elixir                 142.87 K - 8.36x slower +6.16 μs
+
+Memory usage statistics:
+
+Name                                Memory usage
+neighbors with NIF (atom keys)             352 B
+neighbors with NIF (binary keys)           544 B - 1.55x memory usage +192 B
+neighbors with Elixir                     2176 B - 6.18x memory usage +1824 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 06 #####
+Name                                       ips        average  deviation         median         99th %
+neighbors with NIF (atom keys)        849.07 K        1.18 μs   ±450.26%        1.03 μs        2.01 μs
+neighbors with NIF (binary keys)      632.01 K        1.58 μs   ±349.06%        1.36 μs        3.24 μs
+neighbors with Elixir                 108.47 K        9.22 μs   ±110.50%        7.45 μs       48.65 μs
+
+Comparison:
+neighbors with NIF (atom keys)        849.07 K
+neighbors with NIF (binary keys)      632.01 K - 1.34x slower +0.40 μs
+neighbors with Elixir                 108.47 K - 7.83x slower +8.04 μs
+
+Memory usage statistics:
+
+Name                                Memory usage
+neighbors with NIF (atom keys)             352 B
+neighbors with NIF (binary keys)           544 B - 1.55x memory usage +192 B
+neighbors with Elixir                     2968 B - 8.43x memory usage +2616 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 07 #####
+Name                                       ips        average  deviation         median         99th %
+neighbors with NIF (atom keys)       1289.72 K        0.78 μs  ±1148.34%        0.67 μs        1.13 μs
+neighbors with NIF (binary keys)      879.17 K        1.14 μs   ±499.90%        0.94 μs        2.49 μs
+neighbors with Elixir                 156.15 K        6.40 μs   ±229.00%        4.61 μs       32.12 μs
+
+Comparison:
+neighbors with NIF (atom keys)       1289.72 K
+neighbors with NIF (binary keys)      879.17 K - 1.47x slower +0.36 μs
+neighbors with Elixir                 156.15 K - 8.26x slower +5.63 μs
+
+Memory usage statistics:
+
+Name                                Memory usage
+neighbors with NIF (atom keys)             352 B
+neighbors with NIF (binary keys)           544 B - 1.55x memory usage +192 B
+neighbors with Elixir                     1936 B - 5.50x memory usage +1584 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 08 #####
+Name                                       ips        average  deviation         median         99th %
+neighbors with NIF (atom keys)        982.28 K        1.02 μs   ±520.69%        0.89 μs        1.78 μs
+neighbors with NIF (binary keys)      759.06 K        1.32 μs   ±413.72%        1.17 μs        2.46 μs
+neighbors with Elixir                 124.83 K        8.01 μs   ±129.61%        6.40 μs       36.61 μs
+
+Comparison:
+neighbors with NIF (atom keys)        982.28 K
+neighbors with NIF (binary keys)      759.06 K - 1.29x slower +0.30 μs
+neighbors with Elixir                 124.83 K - 7.87x slower +6.99 μs
+
+Memory usage statistics:
+
+Name                                Memory usage
+neighbors with NIF (atom keys)             352 B
+neighbors with NIF (binary keys)           544 B - 1.55x memory usage +192 B
+neighbors with Elixir                     2560 B - 7.27x memory usage +2208 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 09 #####
+Name                                       ips        average  deviation         median         99th %
+neighbors with NIF (atom keys)       1217.17 K        0.82 μs   ±731.73%        0.69 μs        1.54 μs
+neighbors with NIF (binary keys)      932.49 K        1.07 μs   ±312.19%        0.93 μs        1.88 μs
+neighbors with Elixir                 139.20 K        7.18 μs   ±198.25%        5.26 μs       32.04 μs
+
+Comparison:
+neighbors with NIF (atom keys)       1217.17 K
+neighbors with NIF (binary keys)      932.49 K - 1.31x slower +0.25 μs
+neighbors with Elixir                 139.20 K - 8.74x slower +6.36 μs
+
+Memory usage statistics:
+
+Name                                Memory usage
+neighbors with NIF (atom keys)             416 B
+neighbors with NIF (binary keys)           608 B - 1.46x memory usage +192 B
+neighbors with Elixir                     1936 B - 4.65x memory usage +1520 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 10 #####
+Name                                       ips        average  deviation         median         99th %
+neighbors with NIF (atom keys)       1250.56 K        0.80 μs   ±744.59%        0.68 μs        1.36 μs
+neighbors with NIF (binary keys)      954.10 K        1.05 μs   ±464.44%        0.91 μs        1.64 μs
+neighbors with Elixir                 141.28 K        7.08 μs   ±195.14%        5.24 μs       36.53 μs
+
+Comparison:
+neighbors with NIF (atom keys)       1250.56 K
+neighbors with NIF (binary keys)      954.10 K - 1.31x slower +0.25 μs
+neighbors with Elixir                 141.28 K - 8.85x slower +6.28 μs
+
+Memory usage statistics:
+
+Name                                Memory usage
+neighbors with NIF (atom keys)             416 B
+neighbors with NIF (binary keys)           608 B - 1.46x memory usage +192 B
+neighbors with Elixir                     2072 B - 4.98x memory usage +1656 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 11 #####
+Name                                       ips        average  deviation         median         99th %
+neighbors with NIF (atom keys)        888.05 K        1.13 μs   ±429.84%        0.98 μs        1.95 μs
+neighbors with NIF (binary keys)      559.09 K        1.79 μs   ±268.26%        1.52 μs        3.84 μs
+neighbors with Elixir                 104.75 K        9.55 μs   ±126.12%        7.02 μs       54.99 μs
+
+Comparison:
+neighbors with NIF (atom keys)        888.05 K
+neighbors with NIF (binary keys)      559.09 K - 1.59x slower +0.66 μs
+neighbors with Elixir                 104.75 K - 8.48x slower +8.42 μs
+
+Memory usage statistics:
+
+Name                                Memory usage
+neighbors with NIF (atom keys)             416 B
+neighbors with NIF (binary keys)           608 B - 1.46x memory usage +192 B
+neighbors with Elixir                     2872 B - 6.90x memory usage +2456 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 12 #####
+Name                                       ips        average  deviation         median         99th %
+neighbors with NIF (atom keys)        950.55 K        1.05 μs   ±731.67%        0.90 μs        1.87 μs
+neighbors with NIF (binary keys)      707.26 K        1.41 μs   ±286.12%        1.21 μs        2.86 μs
+neighbors with Elixir                 123.68 K        8.09 μs   ±158.83%        6.24 μs       43.42 μs
+
+Comparison:
+neighbors with NIF (atom keys)        950.55 K
+neighbors with NIF (binary keys)      707.26 K - 1.34x slower +0.36 μs
+neighbors with Elixir                 123.68 K - 7.69x slower +7.03 μs
+
+Memory usage statistics:
+
+Name                                Memory usage
+neighbors with NIF (atom keys)             416 B
+neighbors with NIF (binary keys)           608 B - 1.46x memory usage +192 B
+neighbors with Elixir                     2600 B - 6.25x memory usage +2184 B
+
+**All measurements for memory usage were the same**
+
+Operating System: Linux
+CPU Information: Intel(R) Core(TM) i7-6820HQ CPU @ 2.70GHz
+Number of Available Cores: 8
+Available memory: 62.29 GB
+Elixir 1.10.3
+Erlang 23.0.2
+
+Benchmark suite executing with the following configuration:
+warmup: 0 ns
+time: 1 s
+memory time: 1 s
+parallel: 1
+inputs: length: 01, length: 02, length: 03, length: 04, length: 05, length: 06, length: 07, length: 08, length: 09, length: 10, length: 11, length: 12
+Estimated total run time: 48 s
+
+Benchmarking decode_to_bits with Elixir with input length: 01...
+Benchmarking decode_to_bits with Elixir with input length: 02...
+Benchmarking decode_to_bits with Elixir with input length: 03...
+Benchmarking decode_to_bits with Elixir with input length: 04...
+Benchmarking decode_to_bits with Elixir with input length: 05...
+Benchmarking decode_to_bits with Elixir with input length: 06...
+Benchmarking decode_to_bits with Elixir with input length: 07...
+Benchmarking decode_to_bits with Elixir with input length: 08...
+Benchmarking decode_to_bits with Elixir with input length: 09...
+Benchmarking decode_to_bits with Elixir with input length: 10...
+Benchmarking decode_to_bits with Elixir with input length: 11...
+Benchmarking decode_to_bits with Elixir with input length: 12...
+Benchmarking decode_to_bits with NIF with input length: 01...
+Benchmarking decode_to_bits with NIF with input length: 02...
+Benchmarking decode_to_bits with NIF with input length: 03...
+Benchmarking decode_to_bits with NIF with input length: 04...
+Benchmarking decode_to_bits with NIF with input length: 05...
+Benchmarking decode_to_bits with NIF with input length: 06...
+Benchmarking decode_to_bits with NIF with input length: 07...
+Benchmarking decode_to_bits with NIF with input length: 08...
+Benchmarking decode_to_bits with NIF with input length: 09...
+Benchmarking decode_to_bits with NIF with input length: 10...
+Benchmarking decode_to_bits with NIF with input length: 11...
+Benchmarking decode_to_bits with NIF with input length: 12...
+
+##### With input length: 01 #####
+Name                                 ips        average  deviation         median         99th %
+decode_to_bits with NIF          25.61 M       39.04 ns  ±6483.91%          27 ns          52 ns
+decode_to_bits with Elixir        2.23 M      448.75 ns  ±2305.81%         314 ns        1524 ns
+
+Comparison:
+decode_to_bits with NIF          25.61 M
+decode_to_bits with Elixir        2.23 M - 11.49x slower +409.71 ns
+
+Memory usage statistics:
+
+Name                          Memory usage
+decode_to_bits with NIF                0 B
+decode_to_bits with Elixir           184 B - ∞ x memory usage +184 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 02 #####
+Name                                 ips        average  deviation         median         99th %
+decode_to_bits with NIF          24.45 M       40.90 ns  ±6929.14%          28 ns          67 ns
+decode_to_bits with Elixir        1.55 M      644.61 ns  ±1751.54%         416 ns        1205 ns
+
+Comparison:
+decode_to_bits with NIF          24.45 M
+decode_to_bits with Elixir        1.55 M - 15.76x slower +603.71 ns
+
+Memory usage statistics:
+
+Name                          Memory usage
+decode_to_bits with NIF                0 B
+decode_to_bits with Elixir           320 B - ∞ x memory usage +320 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 03 #####
+Name                                 ips        average  deviation         median         99th %
+decode_to_bits with NIF          23.25 M       43.00 ns  ±7006.38%          29 ns          59 ns
+decode_to_bits with Elixir        1.64 M      609.32 ns   ±882.24%         482 ns        1386 ns
+
+Comparison:
+decode_to_bits with NIF          23.25 M
+decode_to_bits with Elixir        1.64 M - 14.17x slower +566.31 ns
+
+Memory usage statistics:
+
+Name                          Memory usage
+decode_to_bits with NIF                0 B
+decode_to_bits with Elixir           456 B - ∞ x memory usage +456 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 04 #####
+Name                                 ips        average  deviation         median         99th %
+decode_to_bits with NIF          22.02 M       45.41 ns  ±7036.57%          32 ns          72 ns
+decode_to_bits with Elixir        1.19 M      842.34 ns  ±1256.17%         596 ns        1774 ns
+
+Comparison:
+decode_to_bits with NIF          22.02 M
+decode_to_bits with Elixir        1.19 M - 18.55x slower +796.93 ns
+
+Memory usage statistics:
+
+Name                          Memory usage
+decode_to_bits with NIF                0 B
+decode_to_bits with Elixir           592 B - ∞ x memory usage +592 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 05 #####
+Name                                 ips        average  deviation         median         99th %
+decode_to_bits with NIF          22.33 M       44.78 ns  ±5657.48%          33 ns          49 ns
+decode_to_bits with Elixir        1.03 M      968.22 ns   ±907.71%         693 ns        1919 ns
+
+Comparison:
+decode_to_bits with NIF          22.33 M
+decode_to_bits with Elixir        1.03 M - 21.62x slower +923.43 ns
+
+Memory usage statistics:
+
+Name                          Memory usage
+decode_to_bits with NIF                0 B
+decode_to_bits with Elixir           728 B - ∞ x memory usage +728 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 06 #####
+Name                                 ips        average  deviation         median         99th %
+decode_to_bits with NIF          20.69 M      0.0483 μs  ±5665.03%      0.0350 μs      0.0550 μs
+decode_to_bits with Elixir        0.93 M        1.08 μs   ±677.68%        0.82 μs        2.93 μs
+
+Comparison:
+decode_to_bits with NIF          20.69 M
+decode_to_bits with Elixir        0.93 M - 22.30x slower +1.03 μs
+
+Memory usage statistics:
+
+Name                          Memory usage
+decode_to_bits with NIF                0 B
+decode_to_bits with Elixir           864 B - ∞ x memory usage +864 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 07 #####
+Name                                 ips        average  deviation         median         99th %
+decode_to_bits with NIF          20.59 M      0.0486 μs  ±5008.91%      0.0360 μs      0.0570 μs
+decode_to_bits with Elixir        0.97 M        1.04 μs   ±461.88%        0.89 μs        2.22 μs
+
+Comparison:
+decode_to_bits with NIF          20.59 M
+decode_to_bits with Elixir        0.97 M - 21.34x slower +0.99 μs
+
+Memory usage statistics:
+
+Name                          Memory usage
+decode_to_bits with NIF                0 B
+decode_to_bits with Elixir          1000 B - ∞ x memory usage +1000 B
+
+**All measurements for memory usage were the same**
+
+##### With input length: 08 #####
+Name                                 ips        average  deviation         median         99th %
+decode_to_bits with NIF          19.62 M      0.0510 μs  ±5478.04%      0.0380 μs      0.0600 μs
+decode_to_bits with Elixir        0.82 M        1.22 μs   ±446.72%        0.99 μs        3.18 μs
+
+Comparison:
+decode_to_bits with NIF          19.62 M
+decode_to_bits with Elixir        0.82 M - 24.00x slower +1.17 μs
+
+Memory usage statistics:
+
+Name                          Memory usage
+decode_to_bits with NIF               0 KB
+decode_to_bits with Elixir         1.11 KB - ∞ x memory usage +1.11 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 09 #####
+Name                                 ips        average  deviation         median         99th %
+decode_to_bits with NIF          19.28 M      0.0519 μs  ±4734.17%      0.0390 μs      0.0820 μs
+decode_to_bits with Elixir        0.82 M        1.21 μs   ±516.09%        1.01 μs        1.58 μs
+
+Comparison:
+decode_to_bits with NIF          19.28 M
+decode_to_bits with Elixir        0.82 M - 23.38x slower +1.16 μs
+
+Memory usage statistics:
+
+Name                          Memory usage
+decode_to_bits with NIF               0 KB
+decode_to_bits with Elixir         1.24 KB - ∞ x memory usage +1.24 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 10 #####
+Name                                 ips        average  deviation         median         99th %
+decode_to_bits with NIF          18.66 M      0.0536 μs  ±4366.33%      0.0410 μs      0.0600 μs
+decode_to_bits with Elixir        0.74 M        1.34 μs   ±592.07%        1.09 μs        2.82 μs
+
+Comparison:
+decode_to_bits with NIF          18.66 M
+decode_to_bits with Elixir        0.74 M - 25.08x slower +1.29 μs
+
+Memory usage statistics:
+
+Name                          Memory usage
+decode_to_bits with NIF               0 KB
+decode_to_bits with Elixir         1.38 KB - ∞ x memory usage +1.38 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 11 #####
+Name                                 ips        average  deviation         median         99th %
+decode_to_bits with NIF          17.07 M      0.0586 μs  ±5521.54%      0.0430 μs       0.128 μs
+decode_to_bits with Elixir        0.64 M        1.57 μs   ±393.87%        1.30 μs        3.41 μs
+
+Comparison:
+decode_to_bits with NIF          17.07 M
+decode_to_bits with Elixir        0.64 M - 26.81x slower +1.51 μs
+
+Memory usage statistics:
+
+Name                          Memory usage
+decode_to_bits with NIF               0 KB
+decode_to_bits with Elixir         1.51 KB - ∞ x memory usage +1.51 KB
+
+**All measurements for memory usage were the same**
+
+##### With input length: 12 #####
+Name                                 ips        average  deviation         median         99th %
+decode_to_bits with NIF          16.96 M      0.0590 μs  ±4299.00%      0.0450 μs      0.0890 μs
+decode_to_bits with Elixir        0.65 M        1.54 μs   ±380.63%        1.32 μs        2.51 μs
+
+Comparison:
+decode_to_bits with NIF          16.96 M
+decode_to_bits with Elixir        0.65 M - 26.08x slower +1.48 μs
+
+Memory usage statistics:
+
+Name                          Memory usage
+decode_to_bits with NIF               0 KB
+decode_to_bits with Elixir         1.64 KB - ∞ x memory usage +1.64 KB
+
+**All measurements for memory usage were the same**
