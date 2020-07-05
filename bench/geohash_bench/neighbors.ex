@@ -2,8 +2,11 @@ defmodule GeohashBench.Neighbors do
   def bench_spec do
     [
       benchmarks: %{
-        "neighbors with NIF" => fn input ->
-          Geohash.Nif.neighbors(input) 
+        "neighbors with NIF (binary keys)" => fn input ->
+          Geohash.Nif.neighbors(input)
+        end,
+        "neighbors with NIF (atom keys)" => fn input ->
+          Geohash.Nif.neighbors2(input)
         end,
         "neighbors with Elixir" => fn input ->
           Geohash.neighbors(input)

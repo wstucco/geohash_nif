@@ -1,55 +1,43 @@
 defmodule Geohash do
   @moduledoc ~S"""
-  Geohash encode/decode library
-  ## Usage
-  - Encode coordinates with `Geohash.encode(lat, lon, precision \\ 11)`
+  Drop in replacement fot the Elixir native [Geohash encode/decode library](https://hexdocs.pm/geohash/) implemented as a NIF
 
-  ```
-  Geohash.encode(42.6, -5.6, 5)
+  ## Basic Usage
+
+
+  ```elixir
+  iex(1)> Geohash.encode(42.6, -5.6, 5)
   "ezs42"
-  ```
 
-  - Decode coordinates with `Geohash.decode(geohash)`
+  iex(1)> Geohash.encode(42.6, -5.6, 11)
+  "ezs42e44yx9"
 
-  ```
-  Geohash.decode("ezs42")
+  iex(1)> Geohash.decode("ezs42")
   {42.605, -5.603}
-  ```
 
-  - Find neighbors
-
-  ```
-  Geohash.neighbors("ezs42")
+  iex(1)> Geohash.neighbors("ezs42")
   %{
-    e: "ezs43",
-    n: "ezs48",
-    ne: "ezs49",
-    nw: "ezefx",
-    s: "ezs40",
-    se: "ezs41",
-    sw: "ezefp",
-    w: "ezefr"
+    "e" => "ezs43",
+    "n" => "ezs48",
+    "ne" => "ezs49",
+    "nw" => "ezefx",
+    "s" => "ezs40",
+    "se" => "ezs41",
+    "sw" => "ezefp",
+    "w" => "ezefr"
   }
-  ```
 
-  - Find adjacent
-
-  ```
-  Geohash.adjacent("ezs42","n")
+  iex(1)> Geohash.adjacent("ezs42","n")
   "ezs48"
 
-  ```
-
-  - Get bounds
-
-  ```
-  Geohash.bounds("u4pruydqqv")
+  iex(1)> Geohash.bounds("u4pruydqqv")
   %{
     max_lat: 57.649115324020386,
     max_lon: 10.407443046569824,
     min_lat: 57.649109959602356,
     min_lon: 10.407432317733765
   }
+
   ```
 
   """
@@ -107,27 +95,55 @@ defmodule Geohash do
   defdelegate bounds(hash), to: Nif
 
   @doc ~S"""
-  Calculate adjacent hashes for the 8 touching `neighbors/1`
+  Calculate adjacent hashes for the 8 touching `neighbors/2`
+
+  ## Options
+  These options are specific to this function
+  * `:keys` -- controls how keys in objects are decoded. Possible values are:
+    * `:strings` (default) - decodes keys as binary strings (compatible mode)
+    * `:atoms` - decodes keys as atoms (fast mode)
+
   ## Examples
   ```
-  iex>   Geohash.neighbors("ezs42")
+  iex> Geohash.neighbors("6gkzwgjz")
   %{
-    e: "ezs43",
-    n: "ezs48",
-    ne: "ezs49",
-    nw: "ezefx",
-    s: "ezs40",
-    se: "ezs41",
-    sw: "ezefp",
-    w: "ezefr"
+    "n" => "6gkzwgmb",
+    "s" => "6gkzwgjy",
+    "e" => "6gkzwgnp",
+    "w" => "6gkzwgjx",
+    "ne" => "6gkzwgq0",
+    "se" => "6gkzwgnn",
+    "nw" => "6gkzwgm8",
+    "sw" => "6gkzwgjw"
+  }
+
+  iex> Geohash.neighbors("6gkzwgjz", keys: :atoms)
+  %{
+    n: "6gkzwgmb",
+    s: "6gkzwgjy",
+    e: "6gkzwgnp",
+    w: "6gkzwgjx",
+    ne: "6gkzwgq0",
+    se: "6gkzwgnn",
+    nw: "6gkzwgm8",
+    sw: "6gkzwgjw"
   }
   ```
+
   """
-  defdelegate neighbors(hash), to: Nif
+  def neighbors(hash, opts \\ [keys: :strings])
+
+  def neighbors(hash, keys: :strings) do
+    Nif.neighbors(hash)
+  end
+
+  def neighbors(hash, keys: :atoms) do
+    Nif.neighbors2(hash)
+  end
 
   @doc ~S"""
   Calculate `adjacent/2` geohash in ordinal direction `["n","s","e","w"]`.
-  Deals with boundary cases when adjacent is not of the same prefix.
+
   ## Examples
   ```
   iex> Geohash.adjacent("ezs42","n")

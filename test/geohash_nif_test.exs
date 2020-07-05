@@ -52,6 +52,17 @@ defmodule GeohashTest do
 
   test "Geohash.neighbors" do
     assert Geohash.neighbors("6gkzwgjz") == %{
+             "n" => "6gkzwgmb",
+             "s" => "6gkzwgjy",
+             "e" => "6gkzwgnp",
+             "w" => "6gkzwgjx",
+             "ne" => "6gkzwgq0",
+             "se" => "6gkzwgnn",
+             "nw" => "6gkzwgm8",
+             "sw" => "6gkzwgjw"
+           }
+
+    assert Geohash.neighbors("6gkzwgjz", keys: :atoms) == %{
              n: "6gkzwgmb",
              s: "6gkzwgjy",
              e: "6gkzwgnp",

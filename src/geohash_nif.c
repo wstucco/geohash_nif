@@ -307,6 +307,91 @@ neighbors(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
 
   ERL_NIF_TERM ret;
 
+  ERL_NIF_TERM keys[NEIGHBORS] = {
+      make_binary(env, "n", 1),
+      make_binary(env, "s", 1),
+      make_binary(env, "e", 1),
+      make_binary(env, "w", 1),
+      make_binary(env, "ne", 2),
+      make_binary(env, "se", 2),
+      make_binary(env, "nw", 2),
+      make_binary(env, "sw", 2),
+  };
+
+  ERL_NIF_TERM values[NEIGHBORS] = {
+      make_binary(env, neighbors->north, hash.size),
+      make_binary(env, neighbors->south, hash.size),
+      make_binary(env, neighbors->east, hash.size),
+      make_binary(env, neighbors->west, hash.size),
+      make_binary(env, neighbors->north_east, hash.size),
+      make_binary(env, neighbors->south_east, hash.size),
+      make_binary(env, neighbors->north_west, hash.size),
+      make_binary(env, neighbors->south_west, hash.size),
+  };
+
+  enif_make_map_from_arrays(env, keys, values, NEIGHBORS, &ret);
+  enif_release_binary(&hash);
+
+  GEOHASH_free_neighbors(neighbors);
+
+  return ret;
+}
+
+/************************************************************************
+ *
+ *  Returns the neighbors of a geohash as map
+ *
+ * %{
+ *    n: ...,
+ *    s: ...,
+ *    e: ...,
+ *    w: ...,
+ *    ne: ...,
+ *    se: ...,
+ *    nw: ...,
+ *    sw: ...
+ * }
+ *
+ ***********************************************************************/
+
+/*
+Geohash.Nif.neighbors2("6gkzwgjz")
+%{
+    n: "6gkzwgmb",
+    s: "6gkzwgjy",
+    e: "6gkzwgnp",
+    w: "6gkzwgjx",
+    ne: "6gkzwgq0",
+    se: "6gkzwgnn",
+    nw: "6gkzwgm8",
+    sw: "6gkzwgjw"
+}
+*/
+static ERL_NIF_TERM
+neighbors2(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
+{
+  if (argc != 1)
+  {
+    return enif_make_badarg(env);
+  }
+
+  ErlNifBinary hash;
+  if (enif_inspect_binary(env, argv[0], &hash) < 1)
+  {
+    return enif_make_badarg(env);
+  }
+
+  if (!GEOHASH_verify_hash((const char *)hash.data, hash.size))
+  {
+    return make_error(env, "invalid hash");
+  }
+
+  GEOHASH_neighbors *neighbors;
+  neighbors = GEOHASH_get_neighbors((const char *)(const char *)hash.data, hash.size);
+  assert(neighbors != NULL);
+
+  ERL_NIF_TERM ret;
+
   ERL_NIF_TERM values[NEIGHBORS] = {
       make_binary(env, neighbors->north, hash.size),
       make_binary(env, neighbors->south, hash.size),
@@ -448,7 +533,7 @@ static ErlNifFunc nif_funcs[] =
         {"decode_to_bits", 1, decode_to_bits},
         {"bounds", 1, bounds},
         {"neighbors", 1, neighbors},
-        {"adjacent", 2, adjacent},
-};
+        {"neighbors2", 1, neighbors2},
+        {"adjacent", 2, adjacent}};
 
 ERL_NIF_INIT(Elixir.Geohash.Nif, nif_funcs, &load, NULL, &upgrade, &unload);
