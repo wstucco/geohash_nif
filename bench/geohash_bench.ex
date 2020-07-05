@@ -1,4 +1,8 @@
 defmodule GeohashBench do
+  def run([]) do
+    IO.puts("No valid benchmark name specified\nSee `mix help bench` for usage")
+  end
+
   def run(what) do
     what
     |> Enum.each(fn bench ->
@@ -22,7 +26,7 @@ defmodule GeohashBench do
       time: 1,
       warmup: 0,
       memory_time: 1,
-      print: [configuration: false]
+      print: [configuration: true]
     )
   end
 end
