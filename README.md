@@ -2,65 +2,41 @@
 
 Drop in replacement fot the Elixir native [Geohash encode/decode library](https://hexdocs.pm/geohash/) implemented as a NIF
 
-**Warning**
+## Installation
 
-`neighbors` has a breaking change, see the [find neighbors](#find-neighbors).
+The package can be installed by adding geohash_nif to your list of dependencies in mix.exs:
+
+```elixir
+def deps do
+  [{:geohash_nif, "~> 1.0"}]
+end
+```
+
+## Basic Usage
 
 
-## [Documentation](https://hexdocs.pm/geohash_nif/)
-
-## Usage
-
-- Encode coordinates with `Geohash.encode(lat, lon, precision \\ 11)`
-
-```Elixir
+```elixir
 iex(1)> Geohash.encode(42.6, -5.6, 5)
 "ezs42"
-```
 
-- Decode coordinates with `Geohash.decode(geohash)`
-
-```Elixir
 iex(1)> Geohash.decode("ezs42")
 {42.605, -5.603}
-```
 
-- <a name="find-neighbors"></a>Find neighbors
-
-**warning**
-
-*There is a difference in the implementation of the `neighbors` function, the original library returns a map of `string => string` this one returns a map of `atom: string`.*
-
-
-
-```Elixir
 iex(1)> Geohash.neighbors("ezs42")
 %{
-  e: "ezs43",
-  n: "ezs48",
-  ne: "ezs49",
-  nw: "ezefx",
-  s: "ezs40",
-  se: "ezs41",
-  sw: "ezefp",
-  w: "ezefr"
+  "e" => "ezs43",
+  "n" => "ezs48",
+  "ne" => "ezs49",
+  "nw" => "ezefx",
+  "s" => "ezs40",
+  "se" => "ezs41",
+  "sw" => "ezefp",
+  "w" => "ezefr"
 }
 
-
-
-```
-
-- Find adjacent
-
-```Elixir
 iex(1)> Geohash.adjacent("ezs42","n")
 "ezs48"
 
-```
-
-- Get bounds
-
-```Elixir
 iex(1)> Geohash.bounds("u4pruydqqv")
 %{
   max_lat: 57.649115324020386,
@@ -71,16 +47,63 @@ iex(1)> Geohash.bounds("u4pruydqqv")
 
 ```
 
-## Installation
+Full documentation can be found at [https://hexdocs.pm/geohash_nif](https://hexdocs.pm/geohash_nif).
 
-  1. Add geohash_nif to your list of dependencies in `mix.exs`:
 
-        def deps do
-          [{:geohash_nif, "~> 1.0"}]
-        end
+##  Differences to Geohash
 
-  2. Ensure geohash is started before your application:
+For compatibility reasons `Geohash.neighbors/2` returns a map with string as keys,
+but passing the option `keys: :atoms` a different implementation is called
+which returns a map with atom as keys.
 
-        def application do
-          [applications: [:geohash_nif]]
-        end
+The atoms implementation is ~30% faster and uses ~40% less memory.
+
+
+## Benchmarks
+
+Included witht the library there is a complete suite of benchmarks available
+as the `bench` mix task.
+
+### Usage:
+
+```bash
+$ mix help bench
+
+Bench Geohash NIF against Gehohash native Elixir implementation
+
+## Usage
+
+mix bench <bench_name> [<bench_name> ...]
+
+If <bench_name> is omitted or one of them is `all` runs all the benchmarks.
+
+<bench_name> can be a single value or a list of values separated by spaces.
+Invalid values are simply ignored.
+
+Valid <bench_name> values are
+
+  • encode
+  • decode
+  • bounds
+  • adjacent
+  • neighbors
+  • decode_to_bits
+
+## Examples
+
+  • $ mix bench - runs all the benchmarks
+  • $ mix bench all - runs all the benchmarks
+  • $ mix bench encode - runs the encode benchmark
+  • $ mix bench encode decode - runs the encode and decode benchmarks
+  • $ mix bench xxx all yyy - runs all benchmarks
+
+```
+
+Detailed benchmarks (including memory measurements): [benchmarks.txt](https://gitlab.com/wstucco/geohash_nif/-/raw/master/benchmarks.txt)
+
+
+## License
+
+GohashNif is released under the Apache License 2.0 - see the [LICENSE](LICENSE) file.
+
+The code for the C geohash library is released under the MIT license - see the [LICENSE.geohash](LICENSE.geohash)
