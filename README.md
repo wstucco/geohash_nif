@@ -104,6 +104,6 @@ Detailed benchmarks (including memory measurements): [benchmarks.txt](https://gi
 
 ## License
 
-GohashNif is released under the Apache License 2.0 - see the [LICENSE](LICENSE) file.
+GohashNif is released under the Apache License 2.0 - see the [LICENSE](https://gitlab.com/wstucco/geohash_nif/-/raw/master/LICENSE) file.
 
-The code for the C geohash library is released under the MIT license - see the [LICENSE.geohash](LICENSE.geohash)
+The code for the C geohash library is released under the MIT license - see the [LICENSE.geohash](https://gitlab.com/wstucco/geohash_nif/-/raw/master/LICENSE.geohash)
